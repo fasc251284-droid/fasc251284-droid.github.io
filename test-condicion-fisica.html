@@ -136,9 +136,108 @@ function seed(){
 let DB;
 try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}
 if(!DB||!DB.cursos){DB=seed()}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}};
 const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600)};
 const curso=()=>DB.cursos.find(c=>c.id===DB.activo)||DB.cursos[0];
+
+/* ══════════ SINCRONIZACIÓN SUPABASE ══════════ */
+const CFGKEY='cjp2_tcf_cfg';
+const DOC='cjp2_tcf_v2';          // identificador del documento en la nube (mismo para todos los dispositivos)
+const TABLA='test_fisico';
+
+let CFG={url:'https://oktinlfoxjdohjukhwqw.supabase.co',key:'',last:null,dev:null};
+try{const c=JSON.parse(localStorage.getItem(CFGKEY));if(c&&typeof c==='object')CFG=Object.assign(CFG,c)}catch(e){}
+if(!CFG.dev){CFG.dev='disp-'+Math.random().toString(36).slice(2,7)}
+
+const saveCfg=()=>{try{localStorage.setItem(CFGKEY,JSON.stringify(CFG))}catch(e){}};
+saveCfg();
+
+const syOK=()=>!!(CFG.url&&CFG.key);
+const syHdr=()=>({'apikey':CFG.key,'Authorization':'Bearer '+CFG.key,'Content-Type':'application/json'});
+const syEnd=()=>CFG.url.replace(/\/+$/,'')+'/rest/v1/'+TABLA;
+
+/* Guardado local — dispara subida automática (con retardo) si hay conexión configurada */
+let _pushT=null,_syncing=false;
+const save=()=>{
+  try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}
+  if(syOK()&&navigator.onLine&&!_syncing){clearTimeout(_pushT);_pushT=setTimeout(()=>syPush(true),1800)}
+};
+
+async function syTest(){
+  if(!syOK())return false;
+  try{const r=await fetch(syEnd()+'?select=id&limit=1',{headers:syHdr()});return r.ok}catch(e){return false}
+}
+
+/* SUBIR: manda todo el DB como un único registro JSON */
+async function syPush(silent){
+  if(!syOK()){if(!silent)toast('Falta configurar la conexión');return false}
+  if(!navigator.onLine){if(!silent)toast('Sin internet · guardado local');return false}
+  _syncing=true;
+  try{
+    const fila=[{id:DOC,data:DB,device:CFG.dev,updated_at:new Date().toISOString()}];
+    const r=await fetch(syEnd()+'?on_conflict=id',{
+      method:'POST',
+      headers:Object.assign(syHdr(),{'Prefer':'resolution=merge-duplicates,return=minimal'}),
+      body:JSON.stringify(fila)
+    });
+    if(!r.ok)throw new Error(r.status+' '+await r.text());
+    CFG.last=new Date().toISOString();saveCfg();
+    if(!silent)toast('Datos subidos ✓');
+    if(!silent&&VIEW==='datos')render();
+    return true;
+  }catch(e){
+    console.error('syPush',e);
+    if(!silent)toast('Error al subir · revisa la clave');
+    return false;
+  }finally{_syncing=false}
+}
+
+/* BAJAR: trae el registro de la nube y reemplaza los datos locales */
+async function syPull(silent){
+  if(!syOK()){if(!silent)toast('Falta configurar la conexión');return false}
+  if(!navigator.onLine){if(!silent)toast('Sin internet');return false}
+  try{
+    const r=await fetch(syEnd()+'?id=eq.'+encodeURIComponent(DOC)+'&select=data,updated_at,device',{headers:syHdr()});
+    if(!r.ok)throw new Error(r.status+' '+await r.text());
+    const rows=await r.json();
+    if(!rows.length){if(!silent)toast('Aún no hay datos en la nube');return false}
+    const remoto=rows[0];
+    if(!remoto.data||!remoto.data.cursos){if(!silent)toast('El registro de la nube está vacío');return false}
+    const f=new Date(remoto.updated_at).toLocaleString('es-CL');
+    if(!silent&&!confirm('Se reemplazarán los datos de ESTE dispositivo con la copia de la nube.\n\nGuardada: '+f+'\nDesde: '+(remoto.device||'—')+'\n\n¿Continuar?'))return false;
+    _syncing=true;
+    DB=remoto.data;
+    try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}
+    CFG.last=remoto.updated_at;saveCfg();
+    _syncing=false;
+    if(!silent)toast('Datos descargados ✓');
+    render();
+    return true;
+  }catch(e){
+    console.error('syPull',e);
+    if(!silent)toast('Error al bajar · revisa la clave');
+    _syncing=false;
+    return false;
+  }
+}
+
+/* Al abrir: si la nube tiene una versión más nueva que la última sincronización de este equipo, avisa */
+async function syBoot(){
+  if(!syOK()||!navigator.onLine)return;
+  try{
+    const r=await fetch(syEnd()+'?id=eq.'+encodeURIComponent(DOC)+'&select=updated_at,device',{headers:syHdr()});
+    if(!r.ok)return;
+    const rows=await r.json();
+    if(!rows.length)return;
+    const rem=new Date(rows[0].updated_at).getTime();
+    const loc=CFG.last?new Date(CFG.last).getTime():0;
+    if(rem>loc+2000&&rows[0].device!==CFG.dev){
+      if(confirm('Hay datos más recientes en la nube ('+new Date(rows[0].updated_at).toLocaleString('es-CL')+').\n\n¿Descargarlos ahora?')) syPull(true).then(()=>toast('Datos actualizados ✓'));
+    }
+  }catch(e){}
+}
+
+window.addEventListener('online',()=>{if(syOK()){toast('Conexión recuperada · subiendo');syPush(true)}});
+/* ══════════ FIN SINCRONIZACIÓN ══════════ */
 
 function nivel(test,v){const x=num(v);if(x===null)return 'x';if(test.tipo==='logro')return(v==='L')?'a':(v==='P'?'m':'b');if(test.mejor==='menor')return x<=test.c1?'a':(x<=test.c2?'m':'b');return x>=test.c1?'a':(x>=test.c2?'m':'b')}
 
@@ -213,7 +312,39 @@ function vAdaptaciones(){
 }
 
 function vDatos(){
-  return `<div class="card"><h2>Configuración</h2><p style="font-size:12px;color:var(--txt2)">Los datos se guardan en este dispositivo. Usa Supabase para sincronizar entre múltiples dispositivos.</p><label class="f">URL Supabase</label><input type="text" id="syUrl" placeholder="https://xxxxx.supabase.co" value="https://oktinlfoxjdohjukhwqw.supabase.co"><label class="f">Clave anon</label><input type="text" id="syKey" placeholder="sb_publishable_xxxxx"><button class="oro" id="sySave">Guardar conexión</button><button style="opacity:.7" id="syUp">Subir datos</button></div>`;
+  const esc=s=>String(s||'').replace(/"/g,'&quot;');
+  const on=navigator.onLine;
+  const est=!syOK()?'Sin configurar':(CFG.last?'Última sincronización: '+new Date(CFG.last).toLocaleString('es-CL'):'Configurado · aún sin sincronizar');
+  const nAl=DB.cursos.reduce((s,c)=>s+c.alumnos.length,0);
+  const nEv=DB.tests.reduce((s,t)=>s+((t.evals||[]).length),0);
+  const nAd=Object.values(DB.adaptaciones||{}).reduce((s,o)=>s+Object.keys(o).length,0);
+
+  let h=`<div class="card"><h2>Sincronización</h2>
+    <div style="display:flex;align-items:center;gap:8px;background:${on?'var(--okbg)':'var(--bajbg)'};color:${on?'var(--ok)':'var(--baj)'};padding:8px 10px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:10px">
+      <span>${on?'●':'●'}</span><span>${on?'Con internet':'Sin internet · se guarda solo en este dispositivo'}</span></div>
+    <div class="hint" style="margin-top:0;margin-bottom:10px">${est}<br>Este dispositivo: <b>${CFG.dev}</b></div>
+    <label class="f">URL Supabase</label>
+    <input type="text" id="syUrl" placeholder="https://xxxxx.supabase.co" value="${esc(CFG.url)}" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <label class="f">Clave anon / publishable</label>
+    <input type="text" id="syKey" placeholder="sb_publishable_xxxxx" value="${esc(CFG.key)}" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <button class="oro" id="sySave">Guardar conexión y probar</button>
+    <div class="row"><button id="syUp" ${syOK()?'':'disabled style="opacity:.4"'}>⬆ Subir</button><button id="syDown" ${syOK()?'':'disabled style="opacity:.4"'}>⬇ Bajar</button></div>
+    <div class="hint">Al guardar cualquier cambio, los datos suben solos a la nube. <b>Bajar</b> reemplaza lo de este dispositivo con la copia guardada — úsalo al abrir la app en un equipo nuevo.</div>
+  </div>`;
+
+  h+=`<div class="card"><h2>Datos en este dispositivo</h2>
+    <div class="tw"><table><tbody>
+      <tr><td class="nm">Cursos</td><td><b>${DB.cursos.length}</b></td></tr>
+      <tr><td class="nm">Estudiantes</td><td><b>${nAl}</b></td></tr>
+      <tr><td class="nm">Evaluaciones registradas</td><td><b>${nEv}</b></td></tr>
+      <tr><td class="nm">Adaptaciones</td><td><b>${nAd}</b></td></tr>
+    </tbody></table></div>
+    <button style="opacity:.85;margin-top:10px" id="expJson">Exportar respaldo (.json)</button>
+    <label class="f" style="margin-top:4px">Restaurar desde respaldo</label>
+    <input type="file" id="impJson" accept="application/json,.json" style="font-size:13px;padding:8px">
+    <button class="gh" id="resetAll">Borrar todo en este dispositivo</button>
+  </div>`;
+  return h;
 }
 
 function bind(){
@@ -227,10 +358,46 @@ function bind(){
   if($('selAlu'))$('selAlu').addEventListener('change',e=>{DB.alumno=e.target.value;save();render()});
   if($('addAdapt')){$('addAdapt').addEventListener('click',()=>{const aid=$('selAluAd').value;const tid=$('selTestAd').value;const desc=$('descAdapt').value.trim();if(!desc)return;if(!DB.adaptaciones[aid])DB.adaptaciones[aid]={};DB.adaptaciones[aid][tid]=desc;save();render();toast('Adaptación guardada')})}
   document.querySelectorAll('[id^="delAd"]').forEach(b=>b.addEventListener('click',()=>{const [aid,tid]=b.id.slice(5).split('-');if(DB.adaptaciones[aid])delete DB.adaptaciones[aid][tid];save();render()}));
-  if($('sySave')){$('sySave').addEventListener('click',()=>{toast('Conexión configurada')})}
+  if($('sySave')){$('sySave').addEventListener('click',async()=>{
+    const u=$('syUrl').value.trim(),k=$('syKey').value.trim();
+    if(!u||!k)return toast('Completa URL y clave');
+    CFG.url=u.replace(/\/+$/,'');CFG.key=k;saveCfg();
+    toast('Probando conexión…');
+    const ok=await syTest();
+    toast(ok?'Conexión OK ✓':'No conecta · revisa URL, clave o RLS');
+    render();
+  })}
+  if($('syUp')){$('syUp').addEventListener('click',()=>{toast('Subiendo…');syPush(false)})}
+  if($('syDown')){$('syDown').addEventListener('click',()=>{syPull(false)})}
+  if($('expJson')){$('expJson').addEventListener('click',()=>{
+    const b=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);
+    a.download='test-fisico-'+hoy()+'.json';document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
+  })}
+  if($('impJson')){$('impJson').addEventListener('change',e=>{
+    const f=e.target.files[0];if(!f)return;
+    const rd=new FileReader();
+    rd.onload=()=>{
+      try{
+        const d=JSON.parse(rd.result);
+        if(!d||!d.cursos||!d.tests)return toast('Archivo no válido');
+        if(!confirm('Se reemplazarán los datos actuales por los del respaldo. ¿Continuar?'))return;
+        DB=d;save();render();toast('Respaldo restaurado ✓');
+      }catch(err){toast('No se pudo leer el archivo')}
+    };
+    rd.readAsText(f);
+  })}
+  if($('resetAll')){$('resetAll').addEventListener('click',()=>{
+    if(!confirm('Esto borra cursos, evaluaciones y adaptaciones de ESTE dispositivo.\nLa copia en la nube no se toca.\n\n¿Seguro?'))return;
+    localStorage.removeItem(KEY);DB=seed();
+    try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}
+    render();toast('Datos borrados');
+  })}
 }
 
 render();
+syBoot();
 </script>
 </body>
 </html>
