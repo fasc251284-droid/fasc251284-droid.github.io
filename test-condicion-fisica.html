@@ -7,6 +7,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Test Físico">
 <meta name="theme-color" content="#0f2b5b">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230f2b5b'/><circle cx='90' cy='50' r='20' fill='%23d4a017'/><path d='M60 120 Q90 90 120 120' stroke='%23fff' stroke-width='12' fill='none' stroke-linecap='round'/><path d='M70 140 L110 140' stroke='%23d4a017' stroke-width='10' stroke-linecap='round'/></svg>">
 <title>Test de Condición Física v2</title>
 <style>
@@ -111,7 +114,7 @@ nav a.on{color:var(--azul)}
 <header>
   <div class="kicker">Colegio Juan Pablo Segundo · Los Lagos</div>
   <h1>Test de Condición Física</h1>
-  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas</div>
+  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas · v<span id="vtag">5</span></div>
 </header>
 
 <main id="app"></main>
@@ -128,6 +131,24 @@ nav a.on{color:var(--azul)}
 <div class="toast" id="toast"></div>
 
 <script>
+const VER='5';
+
+/* Autoactualizacion: si en el servidor hay una version mas nueva, recarga solo */
+setTimeout(()=>{
+  fetch(location.pathname+'?_ac='+Date.now(),{cache:'no-store'})
+    .then(r=>r.ok?r.text():null)
+    .then(t=>{
+      if(!t)return;
+      const m=t.match(/const VER='([^']+)'/);
+      if(m&&m[1]!==VER&&!location.search.includes('v='+m[1])){
+        location.replace(location.pathname+'?v='+m[1]);
+      }
+    }).catch(()=>{});
+},1200);
+
+/* Limpia Service Workers y caches antiguos que servian la version vieja */
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{})}
+if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k))).catch(()=>{})}
 
 const KEY='cjp2_tcf_v2';
 const uid=()=>Math.random().toString(36).slice(2,9);
