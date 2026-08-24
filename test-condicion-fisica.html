@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Test Físico">
+<meta name="theme-color" content="#0f2b5b">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230f2b5b'/><circle cx='90' cy='50' r='20' fill='%23d4a017'/><path d='M60 120 Q90 90 120 120' stroke='%23fff' stroke-width='12' fill='none' stroke-linecap='round'/><path d='M70 140 L110 140' stroke='%23d4a017' stroke-width='10' stroke-linecap='round'/></svg>">
+<title>Test de Condición Física v2</title>
+<style>
+:root{--azul:#0f2b5b;--azul2:#1b427f;--oro:#d4a017;--bg:#f3f5f9;--card:#fff;--linea:#dde3ee;--txt:#16233d;--txt2:#5d6a85;
+  --ok:#1e8e5a;--okbg:#e3f5ec;--med:#b9821a;--medbg:#fdf3dc;--baj:#c2412f;--bajbg:#fbe6e2;--r:14px;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);
+  font-size:15px;line-height:1.4;padding-bottom:calc(78px + env(safe-area-inset-bottom));}
+header{background:linear-gradient(180deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
+  position:sticky;top:0;z-index:50;border-bottom:3px solid var(--oro);}
+header .kicker{font-size:11px;letter-spacing:.10em;text-transform:uppercase;color:#f6e2ad;font-weight:700}
+header h1{margin:2px 0 0;font-size:18px;font-weight:700;letter-spacing:-.01em}
+header .sub{font-size:12px;color:#c3d2ee;margin-top:2px}
+main{padding:14px 14px 20px;max-width:820px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--linea);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.card h2{margin:0 0 10px;font-size:15px;font-weight:700}
+.card h3{margin:8px 0 6px;font-size:13px;font-weight:700;color:var(--azul)}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--txt2);margin:0 0 4px}
+select,input[type=text],input[type=date],textarea{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:10px;
+  font-size:16px;font-family:inherit;background:#fff;color:var(--txt);margin-bottom:8px}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--txt2) 50%),linear-gradient(135deg,var(--txt2) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+button{font-family:inherit;font-size:15px;border:0;border-radius:10px;padding:11px 14px;background:var(--azul);
+  color:#fff;font-weight:600;cursor:pointer;margin-bottom:8px;width:100%}
+button:active{opacity:.85}
+button.oro{background:var(--oro);color:#3a2a00}
+button.gh{background:transparent;color:var(--baj);border:1px solid var(--linea);opacity:.7}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.alu{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--linea)}
+.alu:last-child{border-bottom:0}
+.alu .n{width:22px;font-size:11px;color:var(--txt2);font-variant-numeric:tabular-nums;font-weight:700}
+.alu .nm{flex:1;font-size:13.5px;line-height:1.25;font-weight:600}
+.val{width:60px;text-align:center;font-weight:700;font-size:14px;padding:8px 4px;margin:0!important}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;font-size:12px;width:100%}
+th,td{border:1px solid var(--linea);padding:6px;text-align:center;white-space:nowrap}
+th{background:var(--azul);color:#fff;font-size:10.5px;font-weight:700}
+th.gr{background:var(--oro);color:#3a2a00}
+td.nm{text-align:left;max-width:140px;font-size:11.5px;line-height:1.2;white-space:normal}
+tbody tr:nth-child(even) td{background:#fafbfe}
+.asistencia{display:flex;gap:3px;justify-content:center}
+.asistencia button{width:32px;padding:6px 0;font-size:10px;margin:0;border:1px solid var(--linea);background:#fafbfc;color:var(--txt2);font-weight:700}
+.asistencia button.on-P,.asistencia button.on-A,.asistencia button.on-J{background:var(--azul);color:#fff;border-color:var(--azul)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom));
+  background:var(--txt);color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;
+  z-index:99;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:.95}
+.hint{font-size:12px;color:var(--txt2);line-height:1.35;margin-top:8px}
+.lvl{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700}
+.lvl.a{background:var(--okbg);color:var(--ok)}
+.lvl.m{background:var(--medbg);color:var(--med)}
+.lvl.b{background:var(--bajbg);color:var(--baj)}
+.lvl.x{background:#eef1f6;color:var(--txt2)}
+.delta{font-size:11px;font-weight:700;padding:0 4px}
+.delta.up{color:var(--ok)}
+.delta.down{color:var(--baj)}
+.delta.eq{color:var(--txt2)}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);
+  backdrop-filter:saturate(180%) blur(12px);border-top:1px solid var(--linea);display:flex;
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav a{flex:1;text-align:center;padding:5px 2px;font-size:10px;font-weight:600;color:var(--txt2);
+  text-decoration:none;cursor:pointer}
+nav a .ic{display:block;font-size:19px;line-height:1.35}
+nav a.on{color:var(--azul)}
+@media print{body{padding:0;background:#fff}header,nav{display:none!important}}
+</style>
+</head>
+<body>
 
+<header>
+  <div class="kicker">Colegio Juan Pablo Segundo · Los Lagos</div>
+  <h1>Test de Condición Física</h1>
+  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas</div>
+</header>
+
+<main id="app"></main>
+
+<nav>
+  <a data-v="cursos"><span class="ic">👥</span>Cursos</a>
+  <a data-v="evaluaciones"><span class="ic">📝</span>Evaluaciones</a>
+  <a data-v="alumno"><span class="ic">🏃</span>Alumno</a>
+  <a data-v="adaptaciones"><span class="ic">⚙️</span>Adaptaciones</a>
+  <a data-v="datos"><span class="ic">☁️</span>Datos</a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const KEY='cjp2_tcf_v2';
+const uid=()=>Math.random().toString(36).slice(2,9);
+const hoy=()=>new Date().toISOString().slice(0,10);
+const num=v=>{if(v===undefined||v===null||v==='')return null;const x=parseFloat(String(v).replace(',','.'));return isNaN(x)?null:x};
+const fmt=(x,d=2)=>x===null?'—':x.toFixed(d).replace('.',',');
+
+const D5=[["ARANZAVE MONTECINOS AMANDA"],["BARRIOS PARRA JOSÉ EMILIANO"],["CHÁVEZ AGUILERA MÍA BELLA"],
+["CORNEJO KUSHNER EMMA ANTONIA"],["CORONADO CARMONA EMILY PASCAL"],["FUENTEALBA LEÓN ALEXA ANAÍS"],
+["GAMBOA ESCOBAR AYLEEN ELIZABETH"],["JARAMILLO CHICO MAITE AINNARA"],["JARAMILLO FLORES ELIZABETH"],
+["JOFRÉ CIFUENTES ANGELO ANTONIO"],["MANCILLA LEIVA DAVID ALONSO"],["OBANDO MOLINA MONSERRAT CRISTEL"],
+["OSORIO MUÑOZ FRANCISCA PAZ"],["PAILAPICHÚN HERNÁNDEZ CATALINA"],["PEÑA ARANEDA EMMA IGNACIA"],
+["PÉREZ SILVA FLORENCIA KATALINA"],["PÉREZ VERA DALMA YHIZEL"],["SÁEZ VILLEGAS JACOB ALEXSANDER"],
+["SALDÍA ORTIZ JORGE MAXIMILIANO"],["SANTIBÁÑEZ SOMOZA MAITE ANYELINA"],["SOTO CEA MAYTE ISABEL"],
+["VÁSQUEZ RIFFO SARAI ELIZABETH"],["SALGADO MARTINA"]];
+
+function seed(){
+  const db={
+    tests:[
+      {id:'vel',n:'Velocidad 20 m',ico:'⚡',tipo:'num',u:'s',mejor:'menor',c1:4.10,c2:4.70,evals:[]},
+      {id:'sal',n:'Salto',ico:'🦘',tipo:'num',u:'cm',mejor:'mayor',c1:19,c2:14,evals:[]},
+      {id:'abd',n:'Abdominales',ico:'💪',tipo:'num',u:'rep',mejor:'mayor',c1:19,c2:15,evals:[]},
+      {id:'pla',n:'Plancha',ico:'🧘',tipo:'logro',op:['L','NL','P'],evals:[]},
+      {id:'flex',n:'Flexiones de brazo',ico:'📏',tipo:'num',u:'rep',mejor:'mayor',c1:15,c2:10,evals:[]},
+      {id:'tro',n:'Trote',ico:'🏃',tipo:'num',u:'rep',mejor:'mayor',c1:100,c2:70,evals:[]}
+    ],
+    cursos:[],adaptaciones:{},activo:null,alumno:null
+  };
+  const c5={id:uid(),n:'5º Básico',alumnos:[]};
+  D5.forEach(f=>{c5.alumnos.push({id:uid(),n:f[0]})});
+  db.cursos.push(c5);
+  ['6º Básico','7º Básico','8º Básico'].forEach(n=>{db.cursos.push({id:uid(),n:n,alumnos:[]})});
+  db.activo=c5.id;
+  db.alumno=c5.alumnos[0].id;
+  return db;
+}
+
+let DB;
+try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}
+if(!DB||!DB.cursos){DB=seed()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}};
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600)};
+const curso=()=>DB.cursos.find(c=>c.id===DB.activo)||DB.cursos[0];
+
+function nivel(test,v){const x=num(v);if(x===null)return 'x';if(test.tipo==='logro')return(v==='L')?'a':(v==='P'?'m':'b');if(test.mejor==='menor')return x<=test.c1?'a':(x<=test.c2?'m':'b');return x>=test.c1?'a':(x>=test.c2?'m':'b')}
+
+let VIEW='cursos';
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();VIEW=a.dataset.v;render()}));
+
+function render(){
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===VIEW));
+  const v={cursos:vCursos,evaluaciones:vEvaluaciones,alumno:vAlumno,adaptaciones:vAdaptaciones,datos:vDatos};
+  document.getElementById('app').innerHTML=v[VIEW]?v[VIEW]():'';
+  window.scrollTo(0,0);
+  bind();
+}
+
+function vCursos(){
+  const c=curso();
+  let h=`<div class="card"><h2>Cursos</h2><select id="selCurso">${DB.cursos.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${x.n} · ${x.alumnos.length} estudiantes</option>`).join('')}</select></div>`;
+  h+=`<div class="card"><h2>Estudiantes</h2>`;
+  if(!c.alumnos.length)h+=`<div style="text-align:center;color:var(--txt2);padding:20px">Sin estudiantes</div>`;
+  c.alumnos.forEach((a,i)=>{h+=`<div class="alu"><div class="n">${i+1}</div><div class="nm">${a.n}</div><button class="gh" style="width:60px;font-size:12px;margin:0" id="verA${a.id}">Ver</button><button class="gh" style="width:50px;font-size:12px;margin:0" id="delA${a.id}">✕</button></div>`});
+  h+=`<div class="row"><input type="text" id="nuevoAlu" placeholder="Nombre completo" style="margin-bottom:0"><button class="oro" id="addAlu" style="flex:0 0 88px;margin-bottom:0">Agregar</button></div></div>`;
+  return h;
+}
+
+function vEvaluaciones(){
+  const c=curso();
+  if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Agrega estudiantes primero</div></div>`;
+  let h=`<div class="card"><h2>Registrar evaluación</h2><label class="f">Test</label><select id="selTest">${DB.tests.map(t=>`<option value="${t.id}">${t.ico} ${t.n}</option>`).join('')}</select><label class="f">Fecha</label><input type="date" id="evalFecha" value="${hoy()}"><div class="tw"><table><thead><tr><th style="width:30px">N°</th><th style="text-align:left">Estudiante</th><th style="width:80px">Asist.</th><th style="width:60px">Valor</th></tr></thead><tbody>`;
+  c.alumnos.forEach((a,i)=>{h+=`<tr><td>${i+1}</td><td class="nm">${a.n}</td><td style="padding:4px"><div class="asistencia" id="asi${a.id}"><button class="opt asib" data-a="${a.id}" data-v="P">P</button><button class="opt asib" data-a="${a.id}" data-v="A">A</button><button class="opt asib" data-a="${a.id}" data-v="J">J</button></div></td><td style="padding:4px"><input type="text" id="val${a.id}" placeholder="—" style="width:100%;margin:0;padding:4px;font-size:12px;border:1px solid var(--linea);border-radius:6px" inputmode="decimal"></td></tr>`});
+  h+=`</tbody></table></div><div class="hint">P=Presente · A=Ausente · J=Justificado</div><button class="oro" id="guardarEval">Guardar evaluación</button></div>`;
+  return h;
+}
+
+function vAlumno(){
+  const c=curso();
+  if(!c.alumnos.find(a=>a.id===DB.alumno))DB.alumno=c.alumnos[0].id;
+  const a=c.alumnos.find(x=>x.id===DB.alumno);
+  let h=`<div class="card"><h2>Estudiante</h2><select id="selAlu">${c.alumnos.map((x,i)=>`<option value="${x.id}" ${x.id===a.id?'selected':''}>${i+1}. ${x.n}</option>`).join('')}</select></div>`;
+  h+=`<div class="card"><h2>${a.n}</h2>`;
+  DB.tests.forEach(t=>{
+    const evals=t.evals.filter(e=>e.aid===a.id).sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    h+=`<h3>${t.ico} ${t.n}</h3>`;
+    if(!evals.length){h+=`<div style="font-size:12px;color:var(--txt2)">Sin registro</div>`;return}
+    h+=`<div class="tw"><table><thead><tr><th>Fecha</th><th>Asist.</th><th>Valor</th><th>Nivel</th><th>Δ</th></tr></thead><tbody>`;
+    evals.forEach((e,i)=>{
+      const niv=nivel(t,e.val);
+      const diff=i<evals.length-1?(num(e.val)-num(evals[i+1].val)):null;
+      const d=diff!==null?`<td class="delta ${diff>0?'up':(diff<0?'down':'eq')}">${diff>0?'+':''}${fmt(diff,0)}</td>`:'<td>—</td>';
+      h+=`<tr><td>${e.fecha}</td><td>${e.asist||'—'}</td><td>${e.val||'—'}</td><td><span class="lvl ${niv}">${{a:'A',m:'M',b:'B',x:'—'}[niv]}</span></td>${d}</tr>`;
+    });
+    h+=`</tbody></table></div>`;
+  });
+  h+=`</div>`;
+  return h;
+}
+
+function vAdaptaciones(){
+  const c=curso();
+  if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Sin estudiantes</div></div>`;
+  let h=`<div class="card"><h2>Banco de adaptaciones</h2><label class="f">Estudiante</label><select id="selAluAd">${c.alumnos.map((a,i)=>`<option value="${a.id}">${i+1}. ${a.n}</option>`).join('')}</select><label class="f">Test</label><select id="selTestAd">${DB.tests.map(t=>`<option value="${t.id}">${t.n}</option>`).join('')}</select><label class="f">Descripción de adaptación</label><textarea id="descAdapt" rows="3" placeholder="Ej: Menos repeticiones (15 en lugar de 20)&#10;Menos tiempo de trote&#10;Pausas permitidas" style="margin-bottom:8px"></textarea><button class="oro" id="addAdapt">Agregar adaptación</button></div>`;
+  h+=`<div class="card"><h2>Adaptaciones registradas</h2>`;
+  Object.entries(DB.adaptaciones).forEach(([aid,tests])=>{
+    const a=c.alumnos.find(x=>x.id===aid);
+    if(!a)return;
+    Object.entries(tests).forEach(([tid,desc])=>{
+      const t=DB.tests.find(x=>x.id===tid);
+      h+=`<div style="padding:10px;border-bottom:1px solid var(--linea)"><div style="font-size:12px;font-weight:700">${a.n}</div><div style="font-size:11px;color:var(--txt2)"><b>${t.n}:</b> ${desc}</div><button class="gh" style="width:50px;padding:4px;font-size:11px;margin-top:4px;margin-bottom:0" id="delAd${aid}-${tid}">Eliminar</button></div>`;
+    });
+  });
+  h+=`</div>`;
+  return h;
+}
+
+function vDatos(){
+  return `<div class="card"><h2>Configuración</h2><p style="font-size:12px;color:var(--txt2)">Los datos se guardan en este dispositivo. Usa Supabase para sincronizar entre múltiples dispositivos.</p><label class="f">URL Supabase</label><input type="text" id="syUrl" placeholder="https://xxxxx.supabase.co" value="https://oktinlfoxjdohjukhwqw.supabase.co"><label class="f">Clave anon</label><input type="text" id="syKey" placeholder="sb_publishable_xxxxx"><button class="oro" id="sySave">Guardar conexión</button><button style="opacity:.7" id="syUp">Subir datos</button></div>`;
+}
+
+function bind(){
+  const $=id=>document.getElementById(id);
+  if($('selCurso'))$('selCurso').addEventListener('change',e=>{DB.activo=e.target.value;save();render()});
+  if($('addAlu')){$('addAlu').addEventListener('click',()=>{const n=$('nuevoAlu').value.trim();if(!n)return;curso().alumnos.push({id:uid(),n:n.toUpperCase()});save();render();toast('Estudiante agregado')})}
+  document.querySelectorAll('[id^="verA"]').forEach(b=>b.addEventListener('click',()=>{DB.alumno=b.id.slice(4);save();VIEW='alumno';render()}));
+  document.querySelectorAll('[id^="delA"]').forEach(b=>b.addEventListener('click',()=>{const aid=b.id.slice(4);const a=curso().alumnos.find(x=>x.id===aid);if(!a||!confirm('¿Eliminar a '+a.n+'?'))return;curso().alumnos=curso().alumnos.filter(x=>x.id!==aid);DB.tests.forEach(t=>{t.evals=t.evals.filter(e=>e.aid!==aid)});delete DB.adaptaciones[aid];save();render()}));
+  document.querySelectorAll('.asib').forEach(b=>b.addEventListener('click',()=>{const aid=b.dataset.a;const v=b.dataset.v;const c=document.getElementById('asi'+aid);c.querySelectorAll('.asib').forEach(x=>x.classList.remove('on-P','on-A','on-J'));b.classList.add('on-'+v);b.setAttribute('data-sel',v)}));
+  if($('guardarEval')){$('guardarEval').addEventListener('click',()=>{const testId=$('selTest').value;const fecha=$('evalFecha').value;const test=DB.tests.find(t=>t.id===testId);const c=curso();let n=0;c.alumnos.forEach(a=>{const asiBtn=document.querySelector(`[data-a="${a.id}"][data-sel]`);const asist=asiBtn?asiBtn.dataset.sel:'';const val=$('val'+a.id).value.trim();if(asist||val){if(!test.evals)test.evals=[];test.evals.push({aid:a.id,fecha,asist,val});n++}});if(n){save();toast(n+' registros guardados');render()}else toast('Ingresa datos')})}
+  if($('selAlu'))$('selAlu').addEventListener('change',e=>{DB.alumno=e.target.value;save();render()});
+  if($('addAdapt')){$('addAdapt').addEventListener('click',()=>{const aid=$('selAluAd').value;const tid=$('selTestAd').value;const desc=$('descAdapt').value.trim();if(!desc)return;if(!DB.adaptaciones[aid])DB.adaptaciones[aid]={};DB.adaptaciones[aid][tid]=desc;save();render();toast('Adaptación guardada')})}
+  document.querySelectorAll('[id^="delAd"]').forEach(b=>b.addEventListener('click',()=>{const [aid,tid]=b.id.slice(5).split('-');if(DB.adaptaciones[aid])delete DB.adaptaciones[aid][tid];save();render()}));
+  if($('sySave')){$('sySave').addEventListener('click',()=>{toast('Conexión configurada')})}
+}
+
+render();
+</script>
+</body>
+</html>
