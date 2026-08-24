@@ -7,7 +7,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Test Físico">
 <meta name="theme-color" content="#0f2b5b">
-<link rel="manifest" href="/manifest-tcf.json">
 <link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAEQ0lEQVR4nO3dwY1TOxiGYXM1e+jj0gFbuoA2qII2bhls6YBCKIFFUIhmMrkk3zk+tv/nWSEhBef4nd+WmMy8efvvpwaP+ufoBTA3AREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQkaejFzCi71++vfZXH75+7LmS8b3xQzZPbkTzGjE1AbWH0rlUPKPSAYXpXCqbUd1L9Ib1bP5qE6k4gXbd7GqjqNwE2ntUVBtFtQLqs7ulGioUUM99rdNQlYD672iRhqoExE5KBHTUMKgwhNYP6NhdXL6h9QNiV4sHNMIAGGEN+1k8IPa2ckDjfOmPs5LNrRwQHQiIiICILBvQaNeO0dazlWUDog8BEREQEQERERARAREREBEBEVk2oNE+nzXaeraybED0ISAiAiKyckDjXDvGWcnmVg6IDhYPaIQv/RHWsJ/FA2Jv6wd07ABYe/y0CgG143Zx+XpakYDYT5WA+g+DCuOn1Qmo9d3RIvW0UgG1Xvtap55WLaC2/+6WqqfV/DG/J5t/UKtaOiflJtDZtvtds55WeQKd+V0ZCQH95rf1PEZAV/h9YX9PQETqXqLZhICICIiIgIgIiIiAiAiIiICICIjI09ELGNfPH/+d//zu/ecDVzIy/5VxxWU6l2T0kiPsDq+FVZmAnrtdiYaecYT9cVccjrMTE+i3e0eLUXQioNYerUFDTUAt60BDpe9AG25/2StR3Qm07fAoO4qKBrTHftdsqGJA++10wYZq3YG6bXCdK1GhCdRzPNQZRVUC6r+jRRoqEdBRe1mhocXvQPkWvnv/eZMXCV9hWCtPoK02Pt/+hUfRshMo3LOr0ezxmrNbMKBdTxzH2TOrHWF7b7Dj7JmlAuozHjR0aZ0jrP8FxZWorRHQgfcSV6Lpj7Bjt9BxNndAIwyA4g1NfISNdgUZbT19TBnQCIPnqmEXtp/5jrCRN6ngcTbZBJrlmJhlnbmZJtBEuxL+WxPNoTkm0MjH1g2TLvsuE0ygebehwpVo8Qk0yFfw7Ou/YYIJ1B59juM8/dnXf8McAT1gtKc/2nq2Mk1Ad23AmLu1wFt4aY470Nn/XiameO5rvIuTaSbQyd7fLtjHGu/iZLKA2uvPd67nvsa7aDMGdNV0z73NueaXJrsDnZ2vEQtsw9TvZdYJtNVH/kYw9XuZdQIxiFknEIMQEBEBEREQEQERERARAREREBEBEREQEQERERARARF5OnoBW/r+5dvRS/hbH75+PHoJ2zCBiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiPNhMxgYgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiMgvZpMzjhUu4UYAAAAASUVORK5CYII=">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -68,6 +67,13 @@ tbody tr:nth-child(even) td{background:#fafbfe}
 .grupo button.sel{background:var(--azul);color:#fff}
 .evbot input{flex:1;margin:0!important;padding:10px;font-size:15px;text-align:center;font-weight:600}
 .asi1{flex:0 0 62px;width:62px;padding:11px 0;margin:0!important;border:1px solid var(--linea);border-radius:10px;background:#fafbfc;color:var(--txt2);font-weight:700;font-size:14px}
+.lg1{flex:1;padding:11px 4px;margin:0!important;border:1px solid var(--linea);border-radius:10px;
+  background:#fafbfc;color:var(--txt2);font-weight:700;font-size:13px}
+.lg1.l{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
+.lg1.nl{background:var(--bajbg);color:var(--baj);border-color:var(--baj)}
+.segbox{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.segbox input{width:90px!important;margin:0!important;text-align:center;font-weight:700}
+.segbox span{font-size:12.5px;color:var(--txt2);font-weight:600}
 .asi1.p{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
 .asi1.a{background:var(--bajbg);color:var(--baj);border-color:var(--baj)}
 .asi1.j{background:var(--medbg);color:var(--med);border-color:var(--med)}
@@ -116,7 +122,7 @@ nav a.on{color:var(--azul)}
 <header>
   <div class="kicker">Colegio Juan Pablo Segundo · Los Lagos</div>
   <h1>Test de Condición Física</h1>
-  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas · v<span id="vtag">9</span></div>
+  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas · v<span id="vtag">11</span></div>
 </header>
 
 <main id="app"></main>
@@ -133,7 +139,7 @@ nav a.on{color:var(--azul)}
 <div class="toast" id="toast"></div>
 
 <script>
-const VER='9';
+const VER='11';
 
 /* Autoactualizacion: si en el servidor hay una version mas nueva, recarga solo */
 setTimeout(()=>{
@@ -150,9 +156,8 @@ setTimeout(()=>{
 
 /* Limpia Service Workers y caches antiguos que servian la version vieja */
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations()
-  .then(rs=>rs.forEach(r=>{const u=(r.active&&r.active.scriptURL)||'';if(!u.includes('sw-tcf.js'))r.unregister()}))
-  .catch(()=>{});
-  navigator.serviceWorker.register('/sw-tcf.js').catch(()=>{});}
+  .then(rs=>rs.forEach(r=>{const sc=(r.scope||'');if(sc.replace(/https?:\/\/[^/]+/,'')==='/')r.unregister()}))
+  .catch(()=>{});}
 if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k))).catch(()=>{})}
 
 const KEY='cjp2_tcf_v2';
@@ -176,7 +181,7 @@ function seed(){
       {id:'vel',n:'Velocidad 20 m',ico:'⚡',tipo:'num',u:'s',mejor:'menor',c1:4.10,c2:4.70,evals:[]},
       {id:'sal',n:'Salto',ico:'🦘',tipo:'num',u:'cm',mejor:'mayor',c1:19,c2:14,evals:[]},
       {id:'abd',n:'Abdominales',ico:'💪',tipo:'num',u:'rep',mejor:'mayor',c1:19,c2:15,evals:[]},
-      {id:'pla',n:'Plancha',ico:'🧘',tipo:'logro',op:['L','NL','P'],evals:[]},
+      {id:'pla',n:'Plancha',ico:'🧘',tipo:'logro',op:['L','NL'],seg:30,evals:[]},
       {id:'flex',n:'Flexiones de brazo',ico:'📏',tipo:'num',u:'rep',mejor:'mayor',c1:15,c2:10,evals:[]},
       {id:'tro',n:'Trote',ico:'🏃',tipo:'num',u:'rep',mejor:'mayor',c1:100,c2:70,evals:[]}
     ],
@@ -194,6 +199,9 @@ function seed(){
 let DB;
 try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}
 if(!DB||!DB.cursos){DB=seed()}
+const _pl=DB.tests&&DB.tests.find(t=>t.id==='pla');
+if(_pl){_pl.op=['L','NL'];if(typeof _pl.seg!=='number')_pl.seg=30;
+  (_pl.evals||[]).forEach(e=>{if(e.val==='P')e.val='NL'})}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}};
 const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600)};
 const curso=()=>DB.cursos.find(c=>c.id===DB.activo)||DB.cursos[0];
@@ -226,16 +234,50 @@ function vCursos(){
 function vEvaluaciones(){
   const c=curso();
   if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Agrega estudiantes primero</div></div>`;
-  let h=`<div class="card"><h2>Registrar evaluación</h2><label class="f">Test</label><div class="testgrp">${DB.tests.map(t=>`<button type="button" class="tbtn ${t.id===TESTSEL?'sel':''}" data-t="${t.id}">${t.ico} ${t.n}</button>`).join('')}</div><label class="f">Fecha</label><input type="date" id="evalFecha" value="${hoy()}"></div>`;
-  h+=`<div class="card"><h2>Estudiantes</h2>`;
-  c.alumnos.forEach((a,i)=>{
-    h+=`<div class="evrow"><div class="evtop"><div class="n">${i+1}</div><div class="nm">${a.n}</div></div>`;
-    h+=`<div class="evbot"><button type="button" class="asi1" id="asi${a.id}" data-a="${a.id}" data-sel="">—</button>`;
-    h+=`<input type="text" id="val${a.id}" placeholder="valor" inputmode="decimal"></div></div>`;
-  });
-  h+=`<div class="hint">Toca el botón para cambiar: — → P (presente) → A (ausente) → J (justificado). Todo se guarda solo.</div>`;
+  let h=`<div class="card"><h2>Registrar evaluación</h2><label class="f">Test</label><div class="testgrp">${DB.tests.map(t=>`<button type="button" class="tbtn ${t.id===TESTSEL?'sel':''}" data-t="${t.id}">${t.ico} ${t.n}</button>`).join('')}</div><div id="extra">${extraHTML()}</div><label class="f">Fecha</label><input type="date" id="evalFecha" value="${hoy()}"></div>`;
+  h+=`<div class="card"><h2>Estudiantes</h2><div id="filas">${filasHTML()}</div>`;
+  h+=`<div class="hint" id="pista">${pistaHTML()}</div>`;
   h+=`<button type="button" class="oro" id="pdfCurso">📄 Informe PDF del curso</button></div>`;
   return h;
+}
+
+function extraHTML(){
+  const t=testAct();
+  if(t.tipo!=='logro')return '';
+  return `<label class="f">Tiempo que debe mantener</label><div class="segbox"><input type="text" id="segObj" inputmode="numeric" value="${t.seg||30}"><span>segundos</span></div>`;
+}
+
+function pistaHTML(){
+  const t=testAct();
+  const base='Asistencia: — → P (presente) → A (ausente) → J (justificado).';
+  if(t.tipo==='logro')return base+' Resultado: — → L (logrado) → NL (no logrado). Todo se guarda solo.';
+  return base+' Todo se guarda solo.';
+}
+
+function filasHTML(){
+  const c=curso(),t=testAct(),f=fechaAct();
+  let h='';
+  c.alumnos.forEach((a,i)=>{
+    const e=(t.evals||[]).find(x=>x.aid===a.id&&x.fecha===f);
+    const as=e&&e.asist?e.asist:'', vl=e&&e.val?e.val:'';
+    h+=`<div class="evrow"><div class="evtop"><div class="n">${i+1}</div><div class="nm">${a.n}</div></div>`;
+    h+=`<div class="evbot"><button type="button" class="asi1 ${as.toLowerCase()}" id="asi${a.id}" data-a="${a.id}" data-sel="${as}">${as||'—'}</button>`;
+    if(t.tipo==='logro'){
+      h+=`<button type="button" class="lg1 ${vl.toLowerCase()}" id="val${a.id}" data-a="${a.id}" data-sel="${vl}">${vl||'—'}</button>`;
+    }else{
+      h+=`<input type="text" id="val${a.id}" placeholder="valor" inputmode="decimal" value="${vl}">`;
+    }
+    h+=`</div></div>`;
+  });
+  return h;
+}
+
+function refrescar(){
+  const fx=document.getElementById('filas');if(!fx)return;
+  fx.innerHTML=filasHTML();
+  const ex=document.getElementById('extra');if(ex)ex.innerHTML=extraHTML();
+  const pi=document.getElementById('pista');if(pi)pi.innerHTML=pistaHTML();
+  bindFilas();
 }
 
 function vAlumno(){
@@ -296,17 +338,6 @@ function upsert(aid,campo,valor){
   save();
 }
 
-function pintarFilas(){
-  const t=testAct(),f=fechaAct(),c=curso();
-  c.alumnos.forEach(a=>{
-    const e=(t.evals||[]).find(x=>x.aid===a.id&&x.fecha===f);
-    const b=document.getElementById('asi'+a.id);
-    const i=document.getElementById('val'+a.id);
-    if(b){const v=e?(e.asist||''):'';b.dataset.sel=v;b.textContent=v||'—';
-      b.classList.remove('p','a','j');if(v)b.classList.add(v.toLowerCase())}
-    if(i)i.value=e?(e.val||''):'';
-  });
-}
 
 function imprimir(html){
   const p=document.getElementById('printarea');
@@ -317,7 +348,7 @@ function imprimir(html){
 
 function informeCurso(){
   const t=testAct(),f=fechaAct(),c=curso();
-  let h=`<h1>${t.n}</h1><div class="meta">${c.n} · Fecha: ${f} · Colegio Juan Pablo Segundo · Prof. Felipe Sanhueza Cárdenas</div>`;
+  let h=`<h1>${t.n}${t.tipo==='logro'&&t.seg?' — '+t.seg+' segundos':''}</h1><div class="meta">${c.n} · Fecha: ${f} · Colegio Juan Pablo Segundo · Prof. Felipe Sanhueza Cárdenas</div>`;
   h+=`<table><thead><tr><th style="width:8%">N°</th><th style="text-align:left">Estudiante</th><th style="width:14%">Asist.</th><th style="width:16%">Valor${t.u?' ('+t.u+')':''}</th></tr></thead><tbody>`;
   let np=0,na=0,nj=0;
   c.alumnos.forEach((a,i)=>{
@@ -335,7 +366,7 @@ function informeAlumno(){
   let h=`<h1>${a.n}</h1><div class="meta">${c.n} · Informe de condición física · Colegio Juan Pablo Segundo · Prof. Felipe Sanhueza Cárdenas</div>`;
   DB.tests.forEach(t=>{
     const ev=(t.evals||[]).filter(e=>e.aid===a.id).sort((x,y)=>new Date(y.fecha)-new Date(x.fecha));
-    h+=`<h3>${t.n}${t.u?' ('+t.u+')':''}</h3>`;
+    h+=`<h3>${t.n}${t.u?' ('+t.u+')':''}${t.tipo==='logro'&&t.seg?' — '+t.seg+' segundos':''}</h3>`;
     if(!ev.length){h+=`<div style="font-size:9.5pt;color:#666">Sin registro</div>`;return}
     h+=`<table><thead><tr><th>Fecha</th><th>Asistencia</th><th>Valor</th><th>Diferencia</th></tr></thead><tbody>`;
     ev.forEach((e,i)=>{
@@ -353,23 +384,43 @@ function informeAlumno(){
   imprimir(h);
 }
 
+function bindFilas(){
+  const CICLO=['','P','A','J'];
+  document.querySelectorAll('.asi1').forEach(b=>b.addEventListener('click',ev=>{
+    ev.preventDefault();
+    const i=CICLO.indexOf(b.dataset.sel||''),v=CICLO[(i+1)%4];
+    b.dataset.sel=v;b.textContent=v||'—';
+    b.classList.remove('p','a','j');if(v)b.classList.add(v.toLowerCase());
+    upsert(b.dataset.a,'asist',v);
+  }));
+  const LOGRO=['','L','NL'];
+  document.querySelectorAll('.lg1').forEach(b=>b.addEventListener('click',ev=>{
+    ev.preventDefault();
+    const i=LOGRO.indexOf(b.dataset.sel||''),v=LOGRO[(i+1)%3];
+    b.dataset.sel=v;b.textContent=v||'—';
+    b.classList.remove('l','nl');if(v)b.classList.add(v.toLowerCase());
+    upsert(b.dataset.a,'val',v);
+  }));
+  document.querySelectorAll('.evbot input').forEach(inp=>{
+    const g=()=>upsert(inp.id.slice(3),'val',inp.value.trim());
+    inp.addEventListener('input',g);inp.addEventListener('blur',g);
+  });
+  const sg=document.getElementById('segObj');
+  if(sg)sg.addEventListener('input',()=>{const n=parseInt(sg.value,10);testAct().seg=isNaN(n)?0:n;save()});
+}
+
 function bind(){
   const $=id=>document.getElementById(id);
   if($('selCurso'))$('selCurso').addEventListener('change',e=>{DB.activo=e.target.value;save();render()});
   if($('addAlu')){$('addAlu').addEventListener('click',()=>{const n=$('nuevoAlu').value.trim();if(!n)return;curso().alumnos.push({id:uid(),n:n.toUpperCase()});save();render();toast('Estudiante agregado')})}
   document.querySelectorAll('[id^="verA"]').forEach(b=>b.addEventListener('click',()=>{DB.alumno=b.id.slice(4);save();VIEW='alumno';render()}));
   document.querySelectorAll('[id^="delA"]').forEach(b=>b.addEventListener('click',()=>{const aid=b.id.slice(4);const a=curso().alumnos.find(x=>x.id===aid);if(!a||!confirm('¿Eliminar a '+a.n+'?'))return;curso().alumnos=curso().alumnos.filter(x=>x.id!==aid);DB.tests.forEach(t=>{t.evals=t.evals.filter(e=>e.aid!==aid)});delete DB.adaptaciones[aid];save();render()}));
-  document.querySelectorAll('.tbtn').forEach(b=>b.addEventListener('click',ev=>{ev.preventDefault();TESTSEL=b.dataset.t;document.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');pintarFilas()}));
-  const CICLO=['','P','A','J'];
-  document.querySelectorAll('.asi1').forEach(b=>b.addEventListener('click',ev=>{ev.preventDefault();const i=CICLO.indexOf(b.dataset.sel||'');const v=CICLO[(i+1)%4];b.dataset.sel=v;b.textContent=v||'—';b.classList.remove('p','a','j');if(v)b.classList.add(v.toLowerCase());upsert(b.dataset.a,'asist',v)}));
-  document.querySelectorAll('.evbot input').forEach(inp=>{
-    const g=()=>upsert(inp.id.slice(3),'val',inp.value.trim());
-    inp.addEventListener('input',g);inp.addEventListener('blur',g);
-  });
-  if($('evalFecha'))$('evalFecha').addEventListener('change',pintarFilas);
+  document.querySelectorAll('.tbtn').forEach(b=>b.addEventListener('click',ev=>{ev.preventDefault();TESTSEL=b.dataset.t;document.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');refrescar()}));
+  bindFilas();
+  if($('evalFecha'))$('evalFecha').addEventListener('change',refrescar);
   if($('pdfCurso'))$('pdfCurso').addEventListener('click',informeCurso);
   if($('pdfAlumno'))$('pdfAlumno').addEventListener('click',informeAlumno);
-  if(VIEW==='evaluaciones')pintarFilas();
+  
   if($('selAlu'))$('selAlu').addEventListener('change',e=>{DB.alumno=e.target.value;save();render()});
   if($('addAdapt')){$('addAdapt').addEventListener('click',()=>{const aid=$('selAluAd').value;const tid=$('selTestAd').value;const desc=$('descAdapt').value.trim();if(!desc)return;if(!DB.adaptaciones[aid])DB.adaptaciones[aid]={};DB.adaptaciones[aid][tid]=desc;save();render();toast('Adaptación guardada')})}
   document.querySelectorAll('[id^="delAd"]').forEach(b=>b.addEventListener('click',()=>{const [aid,tid]=b.id.slice(5).split('-');if(DB.adaptaciones[aid])delete DB.adaptaciones[aid][tid];save();render()}));
