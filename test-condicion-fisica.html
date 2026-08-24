@@ -8,14 +8,14 @@
 <meta name="apple-mobile-web-app-title" content="Test Físico">
 <meta name="theme-color" content="#0f2b5b">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230f2b5b'/><circle cx='90' cy='50' r='20' fill='%23d4a017'/><path d='M60 120 Q90 90 120 120' stroke='%23fff' stroke-width='12' fill='none' stroke-linecap='round'/><path d='M70 140 L110 140' stroke='%23d4a017' stroke-width='10' stroke-linecap='round'/></svg>">
-<title>Test de Condición Física v3</title>
+<title>Test de Condición Física v2</title>
 <style>
 :root{--azul:#0f2b5b;--azul2:#1b427f;--oro:#d4a017;--bg:#f3f5f9;--card:#fff;--linea:#dde3ee;--txt:#16233d;--txt2:#5d6a85;
   --ok:#1e8e5a;--okbg:#e3f5ec;--med:#b9821a;--medbg:#fdf3dc;--baj:#c2412f;--bajbg:#fbe6e2;--r:14px;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);
-  font-size:15px;line-height:1.4;padding-bottom:calc(80px + env(safe-area-inset-bottom));}
+  font-size:15px;line-height:1.4;padding-bottom:calc(78px + env(safe-area-inset-bottom));}
 header{background:linear-gradient(180deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
   position:sticky;top:0;z-index:50;border-bottom:3px solid var(--oro);}
 header .kicker{font-size:11px;letter-spacing:.10em;text-transform:uppercase;color:#f6e2ad;font-weight:700}
@@ -24,7 +24,7 @@ header .sub{font-size:12px;color:#c3d2ee;margin-top:2px}
 main{padding:14px 14px 20px;max-width:820px;margin:0 auto}
 .card{background:var(--card);border:1px solid var(--linea);border-radius:var(--r);padding:14px;margin-bottom:12px}
 .card h2{margin:0 0 10px;font-size:15px;font-weight:700}
-.card h3{margin:10px 0 6px;font-size:13px;font-weight:700;color:var(--azul)}
+.card h3{margin:8px 0 6px;font-size:13px;font-weight:700;color:var(--azul)}
 label.f{display:block;font-size:12px;font-weight:600;color:var(--txt2);margin:0 0 4px}
 select,input[type=text],input[type=date],textarea{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:10px;
   font-size:16px;font-family:inherit;background:#fff;color:var(--txt);margin-bottom:8px}
@@ -34,19 +34,54 @@ button{font-family:inherit;font-size:15px;border:0;border-radius:10px;padding:11
   color:#fff;font-weight:600;cursor:pointer;margin-bottom:8px;width:100%}
 button:active{opacity:.85}
 button.oro{background:var(--oro);color:#3a2a00}
-button.gh{background:transparent;color:var(--baj);border:1px solid var(--linea);opacity:.75}
+button.gh{background:transparent;color:var(--baj);border:1px solid var(--linea);opacity:.7}
 .row{display:flex;gap:8px}.row>*{flex:1}
 .alu{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--linea)}
 .alu:last-child{border-bottom:0}
 .alu .n{width:22px;font-size:11px;color:var(--txt2);font-variant-numeric:tabular-nums;font-weight:700}
 .alu .nm{flex:1;font-size:13.5px;line-height:1.25;font-weight:600}
+.val{width:60px;text-align:center;font-weight:700;font-size:14px;padding:8px 4px;margin:0!important}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;font-size:12px;width:100%}
 th,td{border:1px solid var(--linea);padding:6px;text-align:center;white-space:nowrap}
 th{background:var(--azul);color:#fff;font-size:10.5px;font-weight:700}
 th.gr{background:var(--oro);color:#3a2a00}
-td.nm,th.nm{text-align:left;max-width:150px;font-size:11.5px;line-height:1.2;white-space:normal}
+td.nm{text-align:left;max-width:140px;font-size:11.5px;line-height:1.2;white-space:normal}
 tbody tr:nth-child(even) td{background:#fafbfe}
+.evrow{padding:11px 0;border-bottom:1px solid var(--linea)}
+.evrow:last-child{border-bottom:0}
+.evtop{display:flex;gap:8px;align-items:baseline;margin-bottom:7px}
+.evtop .n{font-size:11px;color:var(--txt2);font-weight:700;min-width:20px;font-variant-numeric:tabular-nums}
+.evtop .nm{font-size:13.5px;font-weight:600;line-height:1.25}
+.evbot{display:flex;gap:9px;align-items:center}
+.testgrp{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.testgrp button{width:100%;padding:11px 6px;margin:0;background:#fafbfc;color:var(--txt2);border:1px solid var(--linea);border-radius:10px;font-size:12.5px;font-weight:700;text-align:center;line-height:1.2}
+.testgrp button.sel{background:var(--azul);color:#fff;border-color:var(--azul)}
+.grupo{display:inline-flex;flex:0 0 auto;border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+.grupo button{width:46px;padding:10px 0;margin:0;border:0;border-right:1px solid var(--linea);background:#fafbfc;color:var(--txt2);font-weight:700;font-size:12.5px;border-radius:0}
+.grupo button:last-child{border-right:0}
+.grupo button.sel{background:var(--azul);color:#fff}
+.evbot input{flex:1;margin:0!important;padding:10px;font-size:15px;text-align:center;font-weight:600}
+.asi1{flex:0 0 62px;width:62px;padding:11px 0;margin:0!important;border:1px solid var(--linea);border-radius:10px;background:#fafbfc;color:var(--txt2);font-weight:700;font-size:14px}
+.asi1.p{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
+.asi1.a{background:var(--bajbg);color:var(--baj);border-color:var(--baj)}
+.asi1.j{background:var(--medbg);color:var(--med);border-color:var(--med)}
+.asistencia{display:flex;gap:3px;justify-content:center}
+.asistencia button{width:32px;padding:6px 0;font-size:10px;margin:0;border:1px solid var(--linea);background:#fafbfc;color:var(--txt2);font-weight:700}
+.asistencia button.on-P,.asistencia button.on-A,.asistencia button.on-J{background:var(--azul);color:#fff;border-color:var(--azul)}
+#printarea{display:none}
+@media print{
+  body>header,body>nav,body>main,body>.toast{display:none!important}
+  #printarea{display:block!important;padding:0;font-size:11pt;color:#000}
+  #printarea h1{font-size:15pt;margin:0 0 2mm}
+  #printarea .meta{font-size:9pt;color:#444;margin-bottom:4mm}
+  #printarea table{width:100%;border-collapse:collapse;font-size:9.5pt}
+  #printarea th,#printarea td{border:1px solid #999;padding:2mm;text-align:center}
+  #printarea th{background:#e8ecf3}
+  #printarea td.nm{text-align:left}
+  #printarea h3{font-size:11pt;margin:5mm 0 1.5mm}
+  @page{margin:12mm}
+}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom));
   background:var(--txt);color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;
   z-index:99;opacity:0;transition:opacity .2s;pointer-events:none}
@@ -58,64 +93,17 @@ tbody tr:nth-child(even) td{background:#fafbfe}
 .lvl.b{background:var(--bajbg);color:var(--baj)}
 .lvl.x{background:#eef1f6;color:var(--txt2)}
 .delta{font-size:11px;font-weight:700;padding:0 4px}
-.delta.up{color:var(--ok)}.delta.down{color:var(--baj)}.delta.eq{color:var(--txt2)}
-
-/* chips de pruebas */
-.chips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 0 6px;margin-bottom:6px}
-.chip{flex:0 0 auto;width:auto;margin:0;padding:9px 13px;font-size:12.5px;font-weight:600;border-radius:999px;
-  background:#eef1f6;color:var(--txt2);border:1px solid var(--linea)}
-.chip.on{background:var(--azul);color:#fff;border-color:var(--azul)}
-
-/* asistencia: un solo botón que cicla */
-.asi1{width:46px;padding:8px 0;margin:0;font-size:13px;font-weight:800;background:#eef1f6;color:#98a2b6;border:1px solid var(--linea)}
-.asi1.on-P{background:var(--okbg);color:var(--ok);border-color:#b9e3cd}
-.asi1.on-A{background:var(--bajbg);color:var(--baj);border-color:#f2c6bd}
-.asi1.on-J{background:var(--medbg);color:var(--med);border-color:#efd9a8}
-
-/* logrado / no logrado */
-.lg{width:40px;padding:8px 0;margin:0 2px 0 0;font-size:11px;font-weight:800;background:#eef1f6;color:#98a2b6;border:1px solid var(--linea)}
-.lg.on-L{background:var(--okbg);color:var(--ok);border-color:#b9e3cd}
-.lg.on-NL{background:var(--bajbg);color:var(--baj);border-color:#f2c6bd}
-
-.vin{width:62px;text-align:center;font-weight:700;font-size:13px;padding:7px 2px;margin:0;
-  border:1px solid var(--linea);border-radius:8px}
-.nin{width:130px;font-size:12px;padding:7px 8px;margin:0;border:1px solid var(--linea);border-radius:8px;text-align:left}
-.hist{color:var(--txt2);font-size:11.5px}
-
-.bar{height:9px;background:#eef1f6;border-radius:5px;overflow:hidden;min-width:56px}
-.bar i{display:block;height:100%;border-radius:5px}
-.sug{display:inline-block;font-size:9.5px;font-weight:800;color:var(--oro);margin-left:4px;vertical-align:middle}
-.bco{display:block;width:100%;text-align:left;font-size:12.5px;font-weight:500;padding:9px 11px;margin:0 0 6px;
-  background:#f7f9fc;color:var(--txt);border:1px solid var(--linea);line-height:1.3}
-.bco.on{background:var(--okbg);border-color:#b9e3cd;color:var(--ok);font-weight:600}
-.ada{padding:9px 0;border-bottom:1px solid var(--linea);font-size:12px}
-.ada:last-child{border-bottom:0}
-
+.delta.up{color:var(--ok)}
+.delta.down{color:var(--baj)}
+.delta.eq{color:var(--txt2)}
 nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);
   backdrop-filter:saturate(180%) blur(12px);border-top:1px solid var(--linea);display:flex;
-  padding:6px 2px calc(6px + env(safe-area-inset-bottom))}
-nav a{flex:1;text-align:center;padding:5px 1px;font-size:9px;font-weight:600;color:var(--txt2);
-  text-decoration:none;cursor:pointer;letter-spacing:-.01em}
-nav a .ic{display:block;font-size:18px;line-height:1.3}
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav a{flex:1;text-align:center;padding:5px 2px;font-size:10px;font-weight:600;color:var(--txt2);
+  text-decoration:none;cursor:pointer}
+nav a .ic{display:block;font-size:19px;line-height:1.35}
 nav a.on{color:var(--azul)}
-
-#print{display:none}
-@media print{
-  body{padding:0;background:#fff}
-  header,nav,main,.toast{display:none!important}
-  #print{display:block!important;padding:0;color:#000;font-size:11px}
-  #print h1{font-size:15px;margin:0 0 2px}
-  #print h2{font-size:12px;margin:14px 0 5px;border-bottom:1.5px solid #0f2b5b;padding-bottom:2px;color:#0f2b5b}
-  #print .meta{font-size:10px;color:#444;margin-bottom:10px;border-bottom:2px solid #d4a017;padding-bottom:6px}
-  #print table{width:100%;border-collapse:collapse;font-size:9.5px;margin-bottom:6px}
-  #print th,#print td{border:1px solid #999;padding:3px 4px;text-align:center}
-  #print th{background:#e8edf6}
-  #print td.nm{text-align:left}
-  #print .pie{margin-top:16px;font-size:9px;color:#555;border-top:1px solid #bbb;padding-top:5px}
-  #print ul{margin:2px 0 8px 16px;padding:0}
-  #print li{font-size:10px;margin-bottom:2px}
-  @page{margin:12mm}
-}
+@media print{body{padding:0;background:#fff}header,nav{display:none!important}}
 </style>
 </head>
 <body>
@@ -130,15 +118,14 @@ nav a.on{color:var(--azul)}
 
 <nav>
   <a data-v="cursos"><span class="ic">👥</span>Cursos</a>
-  <a data-v="evaluar"><span class="ic">📝</span>Evaluar</a>
-  <a data-v="estudiante"><span class="ic">🏃</span>Estudiante</a>
-  <a data-v="comparar"><span class="ic">📊</span>Comparar</a>
-  <a data-v="adecuaciones"><span class="ic">⚙️</span>Adecuac.</a>
+  <a data-v="evaluaciones"><span class="ic">📝</span>Evaluaciones</a>
+  <a data-v="alumno"><span class="ic">🏃</span>Alumno</a>
+  <a data-v="adaptaciones"><span class="ic">⚙️</span>Adaptaciones</a>
   <a data-v="datos"><span class="ic">☁️</span>Datos</a>
 </nav>
 
+<div id="printarea"></div>
 <div class="toast" id="toast"></div>
-<div id="print"></div>
 
 <script>
 
@@ -146,9 +133,7 @@ const KEY='cjp2_tcf_v2';
 const uid=()=>Math.random().toString(36).slice(2,9);
 const hoy=()=>new Date().toISOString().slice(0,10);
 const num=v=>{if(v===undefined||v===null||v==='')return null;const x=parseFloat(String(v).replace(',','.'));return isNaN(x)?null:x};
-const fmt=(x,d=2)=>x===null||x===undefined?'—':x.toFixed(d).replace('.',',');
-const esc=s=>String(s===undefined||s===null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const fFecha=f=>{if(!f)return '—';const p=f.split('-');return p[2]+'/'+p[1]};
+const fmt=(x,d=2)=>x===null?'—':x.toFixed(d).replace('.',',');
 
 const D5=[["ARANZAVE MONTECINOS AMANDA"],["BARRIOS PARRA JOSÉ EMILIANO"],["CHÁVEZ AGUILERA MÍA BELLA"],
 ["CORNEJO KUSHNER EMMA ANTONIA"],["CORONADO CARMONA EMILY PASCAL"],["FUENTEALBA LEÓN ALEXA ANAÍS"],
@@ -165,7 +150,7 @@ function seed(){
       {id:'vel',n:'Velocidad 20 m',ico:'⚡',tipo:'num',u:'s',mejor:'menor',c1:4.10,c2:4.70,evals:[]},
       {id:'sal',n:'Salto',ico:'🦘',tipo:'num',u:'cm',mejor:'mayor',c1:19,c2:14,evals:[]},
       {id:'abd',n:'Abdominales',ico:'💪',tipo:'num',u:'rep',mejor:'mayor',c1:19,c2:15,evals:[]},
-      {id:'pla',n:'Plancha',ico:'🧘',tipo:'logro',op:['L','NL'],evals:[]},
+      {id:'pla',n:'Plancha',ico:'🧘',tipo:'logro',op:['L','NL','P'],evals:[]},
       {id:'flex',n:'Flexiones de brazo',ico:'📏',tipo:'num',u:'rep',mejor:'mayor',c1:15,c2:10,evals:[]},
       {id:'tro',n:'Trote',ico:'🏃',tipo:'num',u:'rep',mejor:'mayor',c1:100,c2:70,evals:[]}
     ],
@@ -183,865 +168,188 @@ function seed(){
 let DB;
 try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}
 if(!DB||!DB.cursos){DB=seed()}
-
-/* Migración: datos antiguos siguen sirviendo */
-function migrar(){
-  if(!DB.adaptaciones)DB.adaptaciones={};
-  DB.cursos.forEach(c=>{if(!c.alumnos)c.alumnos=[]});
-  DB.tests.forEach(t=>{
-    if(!t.evals)t.evals=[];
-    t.evals.forEach(e=>{if(e.just===undefined)e.just=''});
-  });
-  const p=DB.tests.find(t=>t.id==='pla');
-  if(p){p.tipo='logro';p.op=['L','NL'];p.evals.forEach(e=>{if(e.val==='P')e.val='NL'})}
-  Object.keys(DB.adaptaciones).forEach(aid=>{
-    const o=DB.adaptaciones[aid];
-    Object.keys(o).forEach(tid=>{if(typeof o[tid]==='string')o[tid]=o[tid]?[o[tid]]:[]});
-  });
-  if(!DB.testSel||!DB.tests.find(t=>t.id===DB.testSel))DB.testSel=DB.tests[0].id;
-  if(!DB.cmpTest||!DB.tests.find(t=>t.id===DB.cmpTest))DB.cmpTest=DB.tests[0].id;
-  if(!DB.adTest||!DB.tests.find(t=>t.id===DB.adTest))DB.adTest=DB.tests[0].id;
-}
-migrar();
-
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}};
 const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600)};
 const curso=()=>DB.cursos.find(c=>c.id===DB.activo)||DB.cursos[0];
-const test=id=>DB.tests.find(t=>t.id===id);
 
-/* ══════════ SINCRONIZACIÓN SUPABASE ══════════ */
-const CFGKEY='cjp2_tcf_cfg';
-const DOC='cjp2_tcf_v2';
-const TABLA='test_fisico';
+function nivel(test,v){const x=num(v);if(x===null)return 'x';if(test.tipo==='logro')return(v==='L')?'a':(v==='P'?'m':'b');if(test.mejor==='menor')return x<=test.c1?'a':(x<=test.c2?'m':'b');return x>=test.c1?'a':(x>=test.c2?'m':'b')}
 
-let CFG={url:'https://oktinlfoxjdohjukhwqw.supabase.co',key:'',last:null,dev:null};
-try{const c=JSON.parse(localStorage.getItem(CFGKEY));if(c&&typeof c==='object')CFG=Object.assign(CFG,c)}catch(e){}
-if(!CFG.dev){CFG.dev='disp-'+Math.random().toString(36).slice(2,7)}
-
-const saveCfg=()=>{try{localStorage.setItem(CFGKEY,JSON.stringify(CFG))}catch(e){}};
-saveCfg();
-
-const syOK=()=>!!(CFG.url&&CFG.key);
-const syHdr=()=>({'apikey':CFG.key,'Authorization':'Bearer '+CFG.key,'Content-Type':'application/json'});
-const syEnd=()=>CFG.url.replace(/\/+$/,'')+'/rest/v1/'+TABLA;
-
-let _pushT=null,_syncing=false;
-const save=()=>{
-  try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('No se pudo guardar')}
-  if(syOK()&&navigator.onLine&&!_syncing){clearTimeout(_pushT);_pushT=setTimeout(()=>syPush(true),1800)}
-};
-
-let DIAG=null;
-
-async function syTest(){
-  DIAG=null;
-  if(!syOK()){DIAG={ok:false,t:'Falta URL o clave',d:'Completa los dos campos y vuelve a guardar.'};return false}
-  if(!/^https:\/\/[a-z0-9]+\.supabase\.co$/i.test(CFG.url)){
-    DIAG={ok:false,t:'URL con formato raro',d:'Debe quedar exactamente así: https://oktinlfoxjdohjukhwqw.supabase.co — sin barra al final, sin espacios.'};
-    return false;
-  }
-  let r;
-  try{r=await fetch(syEnd()+'?select=id&limit=1',{headers:syHdr()})}
-  catch(e){
-    DIAG={ok:false,t:'No hubo respuesta del servidor',d:'Causas: sin internet, la app abierta desde Archivos en vez de GitHub Pages, o el proyecto de Supabase pausado.',raw:String(e)};
-    return false;
-  }
-  let cuerpo='';try{cuerpo=await r.text()}catch(e){}
-  if(r.ok){DIAG={ok:true,t:'Conexión OK',d:'La tabla '+TABLA+' responde correctamente.'};return true}
-  const map={
-    401:['Clave rechazada','La clave anon/publishable no es válida. Cópiala de nuevo completa desde Settings → API Keys.'],
-    403:['Permiso denegado (RLS)','La tabla tiene RLS activo pero sin política para anon. Corre de nuevo el bloque create policy.'],
-    404:['Tabla no encontrada','No existe una tabla llamada '+TABLA+' en el esquema public.'],
-    400:['Petición rechazada','Normalmente falta la columna id, data, device o updated_at.'],
-    406:['Formato no aceptado','La tabla existe pero le faltan columnas del SQL.']
-  };
-  const m=map[r.status]||['Error '+r.status,'Respuesta inesperada del servidor.'];
-  DIAG={ok:false,t:m[0],d:m[1],raw:(cuerpo||'').slice(0,300),code:r.status};
-  return false;
-}
-
-async function syPush(silent){
-  if(!syOK()){if(!silent)toast('Falta configurar la conexión');return false}
-  if(!navigator.onLine){if(!silent)toast('Sin internet · guardado local');return false}
-  _syncing=true;
-  try{
-    const fila=[{id:DOC,data:DB,device:CFG.dev,updated_at:new Date().toISOString()}];
-    const r=await fetch(syEnd()+'?on_conflict=id',{
-      method:'POST',
-      headers:Object.assign(syHdr(),{'Prefer':'resolution=merge-duplicates,return=minimal'}),
-      body:JSON.stringify(fila)
-    });
-    if(!r.ok){const c=await r.text();const err=new Error(c);err.code=r.status;throw err}
-    CFG.last=new Date().toISOString();saveCfg();
-    DIAG={ok:true,t:'Datos subidos',d:'La copia en la nube quedó actualizada · '+new Date().toLocaleTimeString('es-CL')};
-    if(!silent)toast('Datos subidos ✓');
-    if(!silent&&VIEW==='datos')render();
-    return true;
-  }catch(e){
-    console.error('syPush',e);
-    DIAG={ok:false,t:'No se pudieron subir los datos',code:e.code||null,
-      d:e.code===403?'RLS bloquea la escritura. Corre de nuevo el bloque create policy.'
-        :e.code===401?'Clave rechazada. Cópiala completa desde Settings → API Keys.'
-        :e.code===400?'Faltan columnas en la tabla. Vuelve a correr el SQL completo.'
-        :'Revisa la conexión y vuelve a intentar.',
-      raw:String(e.message||e).slice(0,300)};
-    if(!silent){toast('Error al subir');if(VIEW==='datos')render()}
-    return false;
-  }finally{_syncing=false}
-}
-
-async function syPull(silent){
-  if(!syOK()){if(!silent)toast('Falta configurar la conexión');return false}
-  if(!navigator.onLine){if(!silent)toast('Sin internet');return false}
-  try{
-    const r=await fetch(syEnd()+'?id=eq.'+encodeURIComponent(DOC)+'&select=data,updated_at,device',{headers:syHdr()});
-    if(!r.ok)throw new Error(r.status+' '+await r.text());
-    const rows=await r.json();
-    if(!rows.length){if(!silent)toast('Aún no hay datos en la nube');return false}
-    const remoto=rows[0];
-    if(!remoto.data||!remoto.data.cursos){if(!silent)toast('El registro de la nube está vacío');return false}
-    const f=new Date(remoto.updated_at).toLocaleString('es-CL');
-    if(!silent&&!confirm('Se reemplazarán los datos de ESTE dispositivo con la copia de la nube.\n\nGuardada: '+f+'\nDesde: '+(remoto.device||'—')+'\n\n¿Continuar?'))return false;
-    _syncing=true;
-    DB=remoto.data;migrar();
-    try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}
-    CFG.last=remoto.updated_at;saveCfg();
-    _syncing=false;
-    if(!silent)toast('Datos descargados ✓');
-    render();
-    return true;
-  }catch(e){
-    console.error('syPull',e);
-    if(!silent)toast('Error al bajar · revisa la clave');
-    _syncing=false;
-    return false;
-  }
-}
-
-async function syBoot(){
-  if(!syOK()||!navigator.onLine)return;
-  try{
-    const r=await fetch(syEnd()+'?id=eq.'+encodeURIComponent(DOC)+'&select=updated_at,device',{headers:syHdr()});
-    if(!r.ok)return;
-    const rows=await r.json();
-    if(!rows.length)return;
-    const rem=new Date(rows[0].updated_at).getTime();
-    const loc=CFG.last?new Date(CFG.last).getTime():0;
-    if(rem>loc+2000&&rows[0].device!==CFG.dev){
-      if(confirm('Hay datos más recientes en la nube ('+new Date(rows[0].updated_at).toLocaleString('es-CL')+').\n\n¿Descargarlos ahora?')) syPull(true).then(()=>toast('Datos actualizados ✓'));
-    }
-  }catch(e){}
-}
-window.addEventListener('online',()=>{if(syOK()){toast('Conexión recuperada · subiendo');syPush(true)}});
-/* ══════════ FIN SINCRONIZACIÓN ══════════ */
-
-/* ══════════ NIVELES Y CÁLCULOS ══════════ */
-function nivel(t,v){
-  if(v===undefined||v===null||v==='')return 'x';
-  if(t.tipo==='logro')return v==='L'?'a':'b';
-  const x=num(v);if(x===null)return 'x';
-  if(t.mejor==='menor')return x<=t.c1?'a':(x<=t.c2?'m':'b');
-  return x>=t.c1?'a':(x>=t.c2?'m':'b');
-}
-const LTX={a:'Adecuado',m:'En desarrollo',b:'Requiere apoyo',x:'Sin registro'};
-const LAB={a:'A',m:'M',b:'B',x:'—'};
-
-/* evaluaciones de un estudiante en un test, ordenadas de más nueva a más vieja */
-function evalsDe(t,aid){return (t.evals||[]).filter(e=>e.aid===aid&&(e.val!==''&&e.val!==undefined&&e.val!==null)).sort((a,b)=>b.fecha<a.fecha?-1:1)}
-function ultima(t,aid){const l=evalsDe(t,aid);return l.length?l[0]:null}
-function getEval(t,aid,fecha){return (t.evals||[]).find(e=>e.aid===aid&&e.fecha===fecha)}
-function setEval(t,aid,fecha,patch){
-  let e=getEval(t,aid,fecha);
-  if(!e){e={aid,fecha,asist:'',val:'',just:''};t.evals.push(e)}
-  Object.assign(e,patch);
-  if(!e.asist&&!e.val&&!e.just)t.evals=t.evals.filter(x=>x!==e);
-  save();
-}
-/* mejor marca de un estudiante en un test */
-function mejor(t,aid){
-  const l=evalsDe(t,aid);if(!l.length)return null;
-  if(t.tipo==='logro')return l.some(e=>e.val==='L')?'L':'NL';
-  const nums=l.map(e=>num(e.val)).filter(x=>x!==null);
-  if(!nums.length)return null;
-  return t.mejor==='menor'?Math.min.apply(null,nums):Math.max.apply(null,nums);
-}
-/* promedio de un test en un grupo de estudiantes */
-function promedio(t,alumnos){
-  if(t.tipo==='logro'){
-    const con=alumnos.map(a=>ultima(t,a.id)).filter(Boolean);
-    if(!con.length)return null;
-    return con.filter(e=>e.val==='L').length/con.length*100;
-  }
-  const v=alumnos.map(a=>{const u=ultima(t,a.id);return u?num(u.val):null}).filter(x=>x!==null);
-  if(!v.length)return null;
-  return v.reduce((s,x)=>s+x,0)/v.length;
-}
-function textoValor(t,v){
-  if(v===null||v===undefined||v==='')return '—';
-  if(t.tipo==='logro')return v==='L'?'Logrado':'No logrado';
-  return String(v).replace('.',',')+(t.u?' '+t.u:'');
-}
-/* reparto A / M / B de un test en un curso */
-function reparto(t,alumnos){
-  const r={a:0,m:0,b:0,x:0};
-  alumnos.forEach(a=>{const u=ultima(t,a.id);r[u?nivel(t,u.val):'x']++});
-  return r;
-}
-
-/* ══════════ BANCO DE ADECUACIONES ══════════ */
-const BANCO={
-  general:[
-    'Se demuestra la ejecución antes de que el estudiante realice la prueba.',
-    'Se entrega la instrucción de forma verbal y con apoyo visual (tarjeta o pictograma).',
-    'Se permite un ensayo previo sin registro de resultado.',
-    'Se otorga tiempo adicional para preparar la ejecución.',
-    'La prueba se aplica en grupo pequeño o sin observadores.',
-    'Se permiten pausas entre intentos según la necesidad del estudiante.',
-    'El registro se realiza en dos sesiones distintas.',
-    'Se entrega apoyo verbal durante la ejecución.',
-    'Se registra el mejor de dos intentos.',
-    'Se evalúa el progreso personal en lugar de la comparación con el curso.'
-  ],
-  vel:[
-    'Se reduce la distancia a 10 o 15 metros.',
-    'La partida se realiza desde una posición cómoda para el estudiante.',
-    'El recorrido se marca con conos y una señal visual de llegada.',
-    'Un compañero acompaña el desplazamiento sin competir.',
-    'Se permite desplazamiento en trote continuo sin exigencia de velocidad máxima.'
-  ],
-  sal:[
-    'Se marca la zona de caída con una señal visual.',
-    'Se permite el apoyo de las manos al caer.',
-    'La ejecución se realiza sobre colchoneta o superficie antideslizante.',
-    'Se registra el mejor de tres intentos.',
-    'Se permite impulso previo con pasos.'
-  ],
-  abd:[
-    'Se reduce el número de repeticiones exigidas.',
-    'La ejecución se realiza con rodillas flectadas y pies sujetos por un compañero.',
-    'Se utiliza colchoneta para apoyo de la espalda.',
-    'Se reduce el tiempo total de ejecución.',
-    'Se permiten pausas durante la serie sin detener el registro.'
-  ],
-  pla:[
-    'La mantención se realiza con apoyo sobre las rodillas.',
-    'Se reduce el tiempo de mantención exigido.',
-    'El apoyo se realiza sobre una superficie elevada (banca o muro).',
-    'Se registra el logro considerando la postura y no solo el tiempo.',
-    'Se permite una pausa breve sin reiniciar el registro.'
-  ],
-  flex:[
-    'La ejecución se realiza con apoyo sobre las rodillas.',
-    'La flexión se realiza en plano inclinado o contra la pared.',
-    'Se reduce el número de repeticiones exigidas.',
-    'Se permite un ritmo libre, sin conteo externo.',
-    'Se acorta el rango de flexión requerido.'
-  ],
-  tro:[
-    'Se reduce la distancia o el tiempo total de la prueba.',
-    'Se permite alternar trote y caminata.',
-    'El ritmo es autorregulado por el estudiante.',
-    'Se dispone de hidratación durante la ejecución.',
-    'Un compañero acompaña el recorrido marcando un ritmo constante.'
-  ]
-};
-const adaptDe=(aid,tid)=>{const o=DB.adaptaciones[aid];return (o&&o[tid])?o[tid]:[]};
-function toggleAdapt(aid,tid,txt){
-  if(!DB.adaptaciones[aid])DB.adaptaciones[aid]={};
-  if(!DB.adaptaciones[aid][tid])DB.adaptaciones[aid][tid]=[];
-  const l=DB.adaptaciones[aid][tid];
-  const i=l.indexOf(txt);
-  if(i>=0)l.splice(i,1);else l.push(txt);
-  if(!l.length)delete DB.adaptaciones[aid][tid];
-  if(!Object.keys(DB.adaptaciones[aid]).length)delete DB.adaptaciones[aid];
-  save();
-}
-function totalAdapt(aid){const o=DB.adaptaciones[aid];if(!o)return 0;return Object.values(o).reduce((s,l)=>s+l.length,0)}
-
-/* ══════════ ROUTER ══════════ */
-let VIEW='cursos';
-let EVF=hoy();
+let VIEW='cursos';let LASTVIEW=null;let TESTSEL=DB.tests[0].id;
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();VIEW=a.dataset.v;render()}));
 
-function render(mantener){
-  const y=window.scrollY;
+function render(){
   document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===VIEW));
-  const v={cursos:vCursos,evaluar:vEvaluar,estudiante:vEstudiante,comparar:vComparar,adecuaciones:vAdecuaciones,datos:vDatos};
+  const v={cursos:vCursos,evaluaciones:vEvaluaciones,alumno:vAlumno,adaptaciones:vAdaptaciones,datos:vDatos};
+  const y=window.scrollY;
   document.getElementById('app').innerHTML=v[VIEW]?v[VIEW]():'';
+  if(VIEW!==LASTVIEW){window.scrollTo(0,0);LASTVIEW=VIEW}else{window.scrollTo(0,y)}
   bind();
-  window.scrollTo(0,mantener?y:0);
 }
 
-/* ══════════ VISTA CURSOS ══════════ */
 function vCursos(){
   const c=curso();
-  let h=`<div class="card"><h2>Curso</h2><select id="selCurso">${DB.cursos.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.n)} · ${x.alumnos.length} estudiantes</option>`).join('')}</select></div>`;
+  let h=`<div class="card"><h2>Cursos</h2><select id="selCurso">${DB.cursos.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${x.n} · ${x.alumnos.length} estudiantes</option>`).join('')}</select></div>`;
   h+=`<div class="card"><h2>Estudiantes</h2>`;
   if(!c.alumnos.length)h+=`<div style="text-align:center;color:var(--txt2);padding:20px">Sin estudiantes</div>`;
-  c.alumnos.forEach((a,i)=>{
-    const na=totalAdapt(a.id);
-    h+=`<div class="alu"><div class="n">${i+1}</div><div class="nm">${esc(a.n)}${na?` <span class="lvl m" style="font-size:9.5px">⚙ ${na}</span>`:''}</div>
-      <button class="gh" style="width:56px;font-size:12px;margin:0;color:var(--azul)" data-ver="${a.id}">Ver</button>
-      <button class="gh" style="width:44px;font-size:12px;margin:0" data-del="${a.id}">✕</button></div>`;
-  });
-  h+=`<div class="row" style="margin-top:10px"><input type="text" id="nuevoAlu" placeholder="Nombre completo" style="margin-bottom:0"><button class="oro" id="addAlu" style="flex:0 0 88px;margin-bottom:0">Agregar</button></div></div>`;
+  c.alumnos.forEach((a,i)=>{h+=`<div class="alu"><div class="n">${i+1}</div><div class="nm">${a.n}</div><button class="gh" style="width:60px;font-size:12px;margin:0" id="verA${a.id}">Ver</button><button class="gh" style="width:50px;font-size:12px;margin:0" id="delA${a.id}">✕</button></div>`});
+  h+=`<div class="row"><input type="text" id="nuevoAlu" placeholder="Nombre completo" style="margin-bottom:0"><button class="oro" id="addAlu" style="flex:0 0 88px;margin-bottom:0">Agregar</button></div></div>`;
   return h;
 }
 
-/* ══════════ VISTA EVALUAR ══════════ */
-function vEvaluar(){
+function vEvaluaciones(){
   const c=curso();
   if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Agrega estudiantes primero</div></div>`;
-  const t=test(DB.testSel);
-  const fechas=[...new Set((t.evals||[]).map(e=>e.fecha))].filter(f=>f!==EVF).sort().reverse().slice(0,5);
-
-  let h=`<div class="card"><h2>Registrar evaluación</h2>
-    <div class="chips">${DB.tests.map(x=>`<button class="chip ${x.id===t.id?'on':''}" data-t="${x.id}">${x.ico} ${esc(x.n)}</button>`).join('')}</div>
-    <label class="f">Fecha de aplicación</label><input type="date" id="evalFecha" value="${EVF}">
-    <div class="hint" style="margin-top:0;margin-bottom:10px">${esc(c.n)} · ${c.alumnos.length} estudiantes${t.u?' · unidad: '+t.u:''}${t.tipo==='logro'?' · logrado / no logrado':''}<br>
-    Se guarda solo. Toca la asistencia para cambiar entre P, A y J. Desliza la tabla hacia el lado para ver evaluaciones anteriores.</div>
-    <div class="tw"><table><thead><tr>
-      <th style="width:26px">N°</th><th class="nm">Estudiante</th><th style="width:52px">Asist.</th>
-      <th style="width:${t.tipo==='logro'?'90':'70'}px">${t.tipo==='logro'?'Logro':'Valor'}</th>
-      <th style="width:140px">Observación</th>
-      ${fechas.map(f=>`<th class="gr" style="width:62px">${fFecha(f)}</th>`).join('')}
-    </tr></thead><tbody>`;
-
+  let h=`<div class="card"><h2>Registrar evaluación</h2><label class="f">Test</label><div class="testgrp">${DB.tests.map(t=>`<button type="button" class="tbtn ${t.id===TESTSEL?'sel':''}" data-t="${t.id}">${t.ico} ${t.n}</button>`).join('')}</div><label class="f">Fecha</label><input type="date" id="evalFecha" value="${hoy()}"></div>`;
+  h+=`<div class="card"><h2>Estudiantes</h2>`;
   c.alumnos.forEach((a,i)=>{
-    const e=getEval(t,a.id,EVF)||{asist:'',val:'',just:''};
-    const niv=nivel(t,e.val);
-    let celda;
-    if(t.tipo==='logro'){
-      celda=`<button class="lg ${e.val==='L'?'on-L':''}" data-lg="${a.id}" data-val="L">L</button><button class="lg ${e.val==='NL'?'on-NL':''}" data-lg="${a.id}" data-val="NL">NL</button>`;
-    }else{
-      celda=`<input class="vin" type="text" inputmode="decimal" data-val="${a.id}" value="${esc(e.val)}" placeholder="—">
-        <span class="lvl ${niv}" id="lv${a.id}" style="margin-left:3px;font-size:9.5px">${LAB[niv]}</span>`;
-    }
-    h+=`<tr><td>${i+1}</td><td class="nm">${esc(a.n)}</td>
-      <td style="padding:3px"><button class="asi1 ${e.asist?'on-'+e.asist:''}" data-asi="${a.id}">${e.asist||'·'}</button></td>
-      <td style="padding:3px">${celda}</td>
-      <td style="padding:3px"><input class="nin" type="text" data-just="${a.id}" value="${esc(e.just)}" placeholder="${e.asist==='J'||e.asist==='A'?'Justificación':'—'}"></td>
-      ${fechas.map(f=>{const ev=getEval(t,a.id,f);const nv=ev?nivel(t,ev.val):'x';
-        return `<td class="hist"><span class="lvl ${nv}" style="font-size:10px">${ev&&ev.val!==''?esc(t.tipo==='logro'?ev.val:ev.val):'—'}</span></td>`}).join('')}
-    </tr>`;
+    h+=`<div class="evrow"><div class="evtop"><div class="n">${i+1}</div><div class="nm">${a.n}</div></div>`;
+    h+=`<div class="evbot"><button type="button" class="asi1" id="asi${a.id}" data-a="${a.id}" data-sel="">—</button>`;
+    h+=`<input type="text" id="val${a.id}" placeholder="valor" inputmode="decimal"></div></div>`;
   });
-  h+=`</tbody></table></div>
-    <div class="hint">P = Presente · A = Ausente · J = Justificado. La columna dorada muestra las fechas anteriores de esta misma prueba.</div>
-  </div>`;
-
-  const reg=c.alumnos.filter(a=>{const e=getEval(t,a.id,EVF);return e&&e.val!==''}).length;
-  h+=`<div class="card"><h2>Avance de hoy</h2>
-    <div class="hint" style="margin-top:0">${reg} de ${c.alumnos.length} estudiantes con resultado registrado en ${esc(t.n)} el ${fFecha(EVF)}.</div></div>`;
+  h+=`<div class="hint">Toca el botón para cambiar: — → P (presente) → A (ausente) → J (justificado). Todo se guarda solo.</div>`;
+  h+=`<button type="button" class="oro" id="pdfCurso">📄 Informe PDF del curso</button></div>`;
   return h;
 }
 
-/* ══════════ VISTA ESTUDIANTE ══════════ */
-function vEstudiante(){
+function vAlumno(){
   const c=curso();
-  if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Sin estudiantes</div></div>`;
   if(!c.alumnos.find(a=>a.id===DB.alumno))DB.alumno=c.alumnos[0].id;
   const a=c.alumnos.find(x=>x.id===DB.alumno);
-
-  let h=`<div class="card"><h2>Estudiante</h2>
-    <select id="selAlu">${c.alumnos.map((x,i)=>`<option value="${x.id}" ${x.id===a.id?'selected':''}>${i+1}. ${esc(x.n)}</option>`).join('')}</select>
-    <div class="row"><button id="antAlu" style="margin-bottom:0">← Anterior</button><button id="sigAlu" style="margin-bottom:0">Siguiente →</button></div>
-  </div>`;
-
-  h+=`<div class="card"><h2>${esc(a.n)}</h2><div class="hint" style="margin-top:0;margin-bottom:8px">${esc(c.n)}</div>`;
+  let h=`<div class="card"><h2>Estudiante</h2><select id="selAlu">${c.alumnos.map((x,i)=>`<option value="${x.id}" ${x.id===a.id?'selected':''}>${i+1}. ${x.n}</option>`).join('')}</select></div>`;
+  h+=`<div class="card"><h2>${a.n}</h2>`;
   DB.tests.forEach(t=>{
-    const evs=evalsDe(t,a.id);
-    h+=`<h3>${t.ico} ${esc(t.n)}</h3>`;
-    if(!evs.length){h+=`<div style="font-size:12px;color:var(--txt2);margin-bottom:6px">Sin registro</div>`;return}
-    h+=`<div class="tw"><table><thead><tr><th>Fecha</th><th>Asist.</th><th>Resultado</th><th>Nivel</th><th>Δ</th></tr></thead><tbody>`;
-    evs.forEach((e,i)=>{
+    const evals=t.evals.filter(e=>e.aid===a.id).sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    h+=`<h3>${t.ico} ${t.n}</h3>`;
+    if(!evals.length){h+=`<div style="font-size:12px;color:var(--txt2)">Sin registro</div>`;return}
+    h+=`<div class="tw"><table><thead><tr><th>Fecha</th><th>Asist.</th><th>Valor</th><th>Nivel</th><th>Δ</th></tr></thead><tbody>`;
+    evals.forEach((e,i)=>{
       const niv=nivel(t,e.val);
-      let d='<td>—</td>';
-      if(t.tipo!=='logro'&&i<evs.length-1){
-        const x=num(e.val),y=num(evs[i+1].val);
-        if(x!==null&&y!==null){
-          const dif=x-y;
-          const bueno=t.mejor==='menor'?dif<0:dif>0;
-          const cls=dif===0?'eq':(bueno?'up':'down');
-          d=`<td class="delta ${cls}">${dif>0?'+':''}${fmt(dif,1)}</td>`;
-        }
-      }
-      h+=`<tr><td>${fFecha(e.fecha)}</td><td>${e.asist||'—'}</td><td>${esc(textoValor(t,e.val))}</td><td><span class="lvl ${niv}">${LAB[niv]}</span></td>${d}</tr>`;
+      const diff=i<evals.length-1?(num(e.val)-num(evals[i+1].val)):null;
+      const d=diff!==null?`<td class="delta ${diff>0?'up':(diff<0?'down':'eq')}">${diff>0?'+':''}${fmt(diff,0)}</td>`:'<td>—</td>';
+      h+=`<tr><td>${e.fecha}</td><td>${e.asist||'—'}</td><td>${e.val||'—'}</td><td><span class="lvl ${niv}">${{a:'A',m:'M',b:'B',x:'—'}[niv]}</span></td>${d}</tr>`;
     });
     h+=`</tbody></table></div>`;
-    const ad=adaptDe(a.id,t.id);
-    if(ad.length)h+=`<div class="hint" style="margin-top:4px">⚙ ${ad.length} adecuación(es) registrada(s)</div>`;
   });
+  h+=`<button type="button" class="oro" id="pdfAlumno" style="margin-top:10px">📄 Informe PDF del estudiante</button>`;
   h+=`</div>`;
-
-  h+=`<div class="card"><h2>Resumen y perfil</h2><div class="tw"><table><thead><tr><th class="nm">Prueba</th><th>Última</th><th>Mejor</th><th>Nivel</th></tr></thead><tbody>`;
-  DB.tests.forEach(t=>{
-    const u=ultima(t,a.id);const mj=mejor(t,a.id);const niv=u?nivel(t,u.val):'x';
-    h+=`<tr><td class="nm">${t.ico} ${esc(t.n)}</td><td>${u?esc(textoValor(t,u.val)):'—'}</td><td>${mj!==null?esc(textoValor(t,mj)):'—'}</td><td><span class="lvl ${niv}">${LAB[niv]}</span></td></tr>`;
-  });
-  h+=`</tbody></table></div>
-    <button class="oro" id="pdfAlu" style="margin-top:10px">📄 Informe individual (PDF)</button>
-    <div class="hint">Se abre el diálogo de impresión de Safari. Elige <b>Guardar en Archivos</b> o <b>PDF</b>.</div>
-  </div>`;
   return h;
 }
 
-/* ══════════ VISTA COMPARAR ══════════ */
-function vComparar(){
-  const c=curso();
-  const t=test(DB.cmpTest);
-  let h=`<div class="card"><h2>Comparar</h2>
-    <div class="chips">${DB.tests.map(x=>`<button class="chip ${x.id===t.id?'on':''}" data-ct="${x.id}">${x.ico} ${esc(x.n)}</button>`).join('')}</div>
-    <select id="selCursoC">${DB.cursos.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.n)}</option>`).join('')}</select>
-  </div>`;
-
-  /* Ranking dentro del curso */
-  if(!c.alumnos.length){
-    h+=`<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Este curso no tiene estudiantes</div></div>`;
-  }else{
-    const filas=c.alumnos.map(a=>{
-      const u=ultima(t,a.id);const mj=mejor(t,a.id);
-      return {a,u,mj,niv:u?nivel(t,u.val):'x'};
-    });
-    const conDato=filas.filter(f=>f.mj!==null&&f.mj!==undefined);
-    if(t.tipo==='logro'){
-      conDato.sort((p,q)=>(q.mj==='L'?1:0)-(p.mj==='L'?1:0));
-    }else{
-      conDato.sort((p,q)=>t.mejor==='menor'?p.mj-q.mj:q.mj-p.mj);
-    }
-    const sinDato=filas.filter(f=>f.mj===null||f.mj===undefined);
-    const nums=conDato.map(f=>f.mj).filter(x=>typeof x==='number');
-    const mx=nums.length?Math.max.apply(null,nums):0, mn=nums.length?Math.min.apply(null,nums):0;
-
-    h+=`<div class="card"><h2>${t.ico} ${esc(t.n)} · ${esc(c.n)}</h2>`;
-    const r=reparto(t,c.alumnos);
-    h+=`<div class="row" style="margin-bottom:10px">
-      <div style="text-align:center;background:var(--okbg);border-radius:10px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--ok)">${r.a}</div><div style="font-size:10px;color:var(--ok);font-weight:700">Adecuado</div></div>
-      <div style="text-align:center;background:var(--medbg);border-radius:10px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--med)">${r.m}</div><div style="font-size:10px;color:var(--med);font-weight:700">En desarrollo</div></div>
-      <div style="text-align:center;background:var(--bajbg);border-radius:10px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--baj)">${r.b}</div><div style="font-size:10px;color:var(--baj);font-weight:700">Requiere apoyo</div></div>
-      <div style="text-align:center;background:#eef1f6;border-radius:10px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--txt2)">${r.x}</div><div style="font-size:10px;color:var(--txt2);font-weight:700">Sin dato</div></div>
-    </div>`;
-    const pr=promedio(t,c.alumnos);
-    h+=`<div class="hint" style="margin-top:0;margin-bottom:8px">${t.tipo==='logro'?'Porcentaje de logro del curso: <b>'+(pr===null?'—':fmt(pr,0)+'%')+'</b>':'Promedio del curso (última medición): <b>'+(pr===null?'—':fmt(pr,1)+(t.u?' '+t.u:''))+'</b>'}</div>`;
-
-    h+=`<div class="tw"><table><thead><tr><th style="width:26px">#</th><th class="nm">Estudiante</th><th style="width:70px">Mejor</th><th style="width:80px">Comparación</th><th style="width:34px">Niv.</th></tr></thead><tbody>`;
-    conDato.forEach((f,i)=>{
-      let pct=0;
-      if(t.tipo==='logro')pct=f.mj==='L'?100:6;
-      else if(typeof f.mj==='number'){
-        if(t.mejor==='menor')pct=mn>0?(mn/f.mj)*100:0;
-        else pct=mx>0?(f.mj/mx)*100:0;
-      }
-      pct=Math.max(6,Math.min(100,pct));
-      const col=f.niv==='a'?'var(--ok)':(f.niv==='m'?'var(--med)':'var(--baj)');
-      h+=`<tr><td>${i+1}</td><td class="nm">${esc(f.a.n)}</td><td><b>${esc(textoValor(t,f.mj))}</b></td>
-        <td><div class="bar"><i style="width:${pct.toFixed(0)}%;background:${col}"></i></div></td>
-        <td><span class="lvl ${f.niv}">${LAB[f.niv]}</span></td></tr>`;
-    });
-    sinDato.forEach(f=>{h+=`<tr><td>—</td><td class="nm" style="color:var(--txt2)">${esc(f.a.n)}</td><td colspan="3" style="color:var(--txt2);font-size:11px">Sin registro</td></tr>`});
-    h+=`</tbody></table></div></div>`;
-  }
-
-  /* Comparación entre cursos */
-  h+=`<div class="card"><h2>Comparación por curso</h2>
-    <div class="hint" style="margin-top:0;margin-bottom:8px">Promedio de la última medición de cada estudiante. En Plancha se muestra el porcentaje de logro.</div>
-    <div class="tw"><table><thead><tr><th class="nm">Prueba</th>${DB.cursos.map(x=>`<th>${esc(x.n.replace(' Básico',''))}</th>`).join('')}</tr></thead><tbody>`;
-  DB.tests.forEach(t=>{
-    h+=`<tr><td class="nm">${t.ico} ${esc(t.n)}</td>`;
-    DB.cursos.forEach(x=>{
-      const p=promedio(t,x.alumnos);
-      h+=`<td>${p===null?'—':(t.tipo==='logro'?fmt(p,0)+'%':fmt(p,1))}</td>`;
-    });
-    h+=`</tr>`;
-  });
-  h+=`</tbody></table></div>
-    <div class="tw" style="margin-top:8px"><table><thead><tr><th class="nm">Curso</th><th>Estudiantes</th><th>Registros</th></tr></thead><tbody>`;
-  DB.cursos.forEach(x=>{
-    const reg=DB.tests.reduce((s,t)=>s+(t.evals||[]).filter(e=>x.alumnos.some(a=>a.id===e.aid)).length,0);
-    h+=`<tr><td class="nm">${esc(x.n)}</td><td>${x.alumnos.length}</td><td>${reg}</td></tr>`;
-  });
-  h+=`</tbody></table></div></div>`;
-
-  h+=`<div class="card"><h2>Informes</h2>
-    <button class="oro" id="pdfCurso">📄 Informe del curso (PDF)</button>
-    <button id="pdfPrueba">📄 Informe de ${esc(t.n)} (PDF)</button>
-    <button id="pdfGeneral" style="opacity:.9">📄 Informe general de todos los cursos (PDF)</button>
-    <div class="hint">Se abre el diálogo de impresión de Safari. Elige <b>Guardar en Archivos</b> o <b>PDF</b>. Si estás en la app instalada y no abre, abre la misma dirección en Safari.</div>
-  </div>`;
-  return h;
-}
-
-/* ══════════ VISTA ADECUACIONES ══════════ */
-function vAdecuaciones(){
+function vAdaptaciones(){
   const c=curso();
   if(!c.alumnos.length)return `<div class="card"><div style="text-align:center;color:var(--txt2);padding:20px">Sin estudiantes</div></div>`;
-  if(!DB.adAlu||!c.alumnos.find(a=>a.id===DB.adAlu))DB.adAlu=c.alumnos[0].id;
-  const a=c.alumnos.find(x=>x.id===DB.adAlu);
-  const t=test(DB.adTest);
-  const u=ultima(t,a.id);
-  const niv=u?nivel(t,u.val):'x';
-  const sel=adaptDe(a.id,t.id);
-  const selG=adaptDe(a.id,'general');
-
-  let h=`<div class="card"><h2>Adecuaciones curriculares</h2>
-    <label class="f">Estudiante</label>
-    <select id="selAluAd">${c.alumnos.map((x,i)=>`<option value="${x.id}" ${x.id===a.id?'selected':''}>${i+1}. ${esc(x.n)}</option>`).join('')}</select>
-    <label class="f">Prueba</label>
-    <div class="chips">${DB.tests.map(x=>`<button class="chip ${x.id===t.id?'on':''}" data-at="${x.id}">${x.ico} ${esc(x.n)}</button>`).join('')}</div>
-    <div style="background:#f7f9fc;border:1px solid var(--linea);border-radius:10px;padding:10px;font-size:12px">
-      <b>${esc(a.n)}</b><br>
-      ${esc(t.n)}: último resultado <b>${u?esc(textoValor(t,u.val)):'sin registro'}</b> ·
-      <span class="lvl ${niv}">${LTX[niv]}</span>
-      ${niv==='b'?'<br><span style="color:var(--baj);font-weight:600">Las sugerencias marcadas con ★ son las más pertinentes para este nivel de desempeño.</span>':''}
-    </div>
-  </div>`;
-
-  h+=`<div class="card"><h2>Banco para ${esc(t.n)}</h2>
-    <div class="hint" style="margin-top:0;margin-bottom:8px">Toca una sugerencia para asignarla o quitarla. Puedes elegir varias.</div>`;
-  BANCO[t.id].forEach(txt=>{
-    const on=sel.indexOf(txt)>=0;
-    h+=`<button class="bco ${on?'on':''}" data-bco="${esc(txt)}" data-tid="${t.id}">${on?'✓ ':''}${esc(txt)}${niv==='b'?'<span class="sug">★</span>':''}</button>`;
-  });
-  h+=`</div>`;
-
-  h+=`<div class="card"><h2>Banco general (todas las pruebas)</h2>`;
-  BANCO.general.forEach(txt=>{
-    const on=selG.indexOf(txt)>=0;
-    h+=`<button class="bco ${on?'on':''}" data-bco="${esc(txt)}" data-tid="general">${on?'✓ ':''}${esc(txt)}</button>`;
-  });
-  h+=`</div>`;
-
-  h+=`<div class="card"><h2>Adecuación propia</h2>
-    <textarea id="descAdapt" rows="3" placeholder="Escribe una adecuación redactada en términos observables"></textarea>
-    <button class="oro" id="addAdapt">Agregar a ${esc(t.n)}</button></div>`;
-
-  h+=`<div class="card"><h2>Registradas · ${esc(a.n)}</h2>`;
-  const o=DB.adaptaciones[a.id]||{};
-  const claves=Object.keys(o);
-  if(!claves.length)h+=`<div style="text-align:center;color:var(--txt2);padding:16px;font-size:12px">Sin adecuaciones registradas</div>`;
-  claves.forEach(tid=>{
-    const nom=tid==='general'?'General':(test(tid)?test(tid).n:tid);
-    o[tid].forEach(txt=>{
-      h+=`<div class="ada"><div style="font-weight:700;color:var(--azul);font-size:11px">${esc(nom)}</div>
-        <div style="margin:2px 0 5px">${esc(txt)}</div>
-        <button class="gh" style="width:76px;padding:4px;font-size:11px;margin:0" data-quita="${esc(txt)}" data-qt="${tid}">Quitar</button></div>`;
+  let h=`<div class="card"><h2>Banco de adaptaciones</h2><label class="f">Estudiante</label><select id="selAluAd">${c.alumnos.map((a,i)=>`<option value="${a.id}">${i+1}. ${a.n}</option>`).join('')}</select><label class="f">Test</label><select id="selTestAd">${DB.tests.map(t=>`<option value="${t.id}">${t.n}</option>`).join('')}</select><label class="f">Descripción de adaptación</label><textarea id="descAdapt" rows="3" placeholder="Ej: Menos repeticiones (15 en lugar de 20)&#10;Menos tiempo de trote&#10;Pausas permitidas" style="margin-bottom:8px"></textarea><button class="oro" id="addAdapt">Agregar adaptación</button></div>`;
+  h+=`<div class="card"><h2>Adaptaciones registradas</h2>`;
+  Object.entries(DB.adaptaciones).forEach(([aid,tests])=>{
+    const a=c.alumnos.find(x=>x.id===aid);
+    if(!a)return;
+    Object.entries(tests).forEach(([tid,desc])=>{
+      const t=DB.tests.find(x=>x.id===tid);
+      h+=`<div style="padding:10px;border-bottom:1px solid var(--linea)"><div style="font-size:12px;font-weight:700">${a.n}</div><div style="font-size:11px;color:var(--txt2)"><b>${t.n}:</b> ${desc}</div><button class="gh" style="width:50px;padding:4px;font-size:11px;margin-top:4px;margin-bottom:0" id="delAd${aid}-${tid}">Eliminar</button></div>`;
     });
   });
   h+=`</div>`;
-
-  h+=`<div class="card"><h2>Resumen del curso</h2><div class="tw"><table><thead><tr><th class="nm">Estudiante</th><th>Adecuaciones</th></tr></thead><tbody>`;
-  c.alumnos.forEach(x=>{const n=totalAdapt(x.id);h+=`<tr><td class="nm">${esc(x.n)}</td><td>${n||'—'}</td></tr>`});
-  h+=`</tbody></table></div>
-    <button class="oro" id="pdfAdapt" style="margin-top:10px">📄 Informe de adecuaciones (PDF)</button></div>`;
   return h;
 }
 
-/* ══════════ VISTA DATOS ══════════ */
 function vDatos(){
-  const on=navigator.onLine;
-  const est=!syOK()?'Sin configurar':(CFG.last?'Última sincronización: '+new Date(CFG.last).toLocaleString('es-CL'):'Configurado · aún sin sincronizar');
-  const nAl=DB.cursos.reduce((s,c)=>s+c.alumnos.length,0);
-  const nEv=DB.tests.reduce((s,t)=>s+((t.evals||[]).length),0);
-  const nAd=Object.values(DB.adaptaciones||{}).reduce((s,o)=>s+Object.values(o).reduce((q,l)=>q+l.length,0),0);
-
-  let h=`<div class="card"><h2>Sincronización</h2>
-    <div style="display:flex;align-items:center;gap:8px;background:${on?'var(--okbg)':'var(--bajbg)'};color:${on?'var(--ok)':'var(--baj)'};padding:8px 10px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:10px">
-      <span>●</span><span>${on?'Con internet':'Sin internet · se guarda solo en este dispositivo'}</span></div>
-    <div class="hint" style="margin-top:0;margin-bottom:10px">${est}<br>Este dispositivo: <b>${esc(CFG.dev)}</b></div>
-    <label class="f">URL Supabase</label>
-    <input type="text" id="syUrl" placeholder="https://xxxxx.supabase.co" value="${esc(CFG.url)}" autocapitalize="off" autocorrect="off" spellcheck="false">
-    <label class="f">Clave anon / publishable</label>
-    <input type="text" id="syKey" placeholder="sb_publishable_xxxxx" value="${esc(CFG.key)}" autocapitalize="off" autocorrect="off" spellcheck="false">
-    <button class="oro" id="sySave">Guardar conexión y probar</button>`;
-
-  if(DIAG){
-    const cl=DIAG.ok?['var(--okbg)','var(--ok)']:['var(--bajbg)','var(--baj)'];
-    h+=`<div style="background:${cl[0]};border-radius:10px;padding:10px 12px;margin-bottom:10px">
-      <div style="font-size:13px;font-weight:700;color:${cl[1]}">${DIAG.ok?'✓':'✕'} ${esc(DIAG.t)}${DIAG.code?' ('+DIAG.code+')':''}</div>
-      <div style="font-size:12px;color:var(--txt);line-height:1.4;margin-top:4px">${esc(DIAG.d)}</div>
-      ${DIAG.raw?`<div style="font-size:10.5px;color:var(--txt2);margin-top:6px;word-break:break-all;font-family:ui-monospace,monospace">${esc(DIAG.raw)}</div>`:''}
-    </div>`;
-  }
-
-  h+=`<div class="row"><button id="syUp" ${syOK()?'':'disabled style="opacity:.4"'}>⬆ Subir</button><button id="syDown" ${syOK()?'':'disabled style="opacity:.4"'}>⬇ Bajar</button></div>
-    <div class="hint">Al guardar cualquier cambio los datos suben solos. <b>Bajar</b> reemplaza lo de este dispositivo con la copia de la nube.</div>
-  </div>`;
-
-  h+=`<div class="card"><h2>Datos en este dispositivo</h2>
-    <div class="tw"><table><tbody>
-      <tr><td class="nm">Cursos</td><td><b>${DB.cursos.length}</b></td></tr>
-      <tr><td class="nm">Estudiantes</td><td><b>${nAl}</b></td></tr>
-      <tr><td class="nm">Registros de evaluación</td><td><b>${nEv}</b></td></tr>
-      <tr><td class="nm">Adecuaciones</td><td><b>${nAd}</b></td></tr>
-    </tbody></table></div>
-    <button style="opacity:.85;margin-top:10px" id="expJson">Exportar respaldo (.json)</button>
-    <label class="f" style="margin-top:4px">Restaurar desde respaldo</label>
-    <input type="file" id="impJson" accept="application/json,.json" style="font-size:13px;padding:8px">
-    <button class="gh" id="resetAll">Borrar todo en este dispositivo</button>
-  </div>`;
-  return h;
+  return `<div class="card"><h2>Configuración</h2><p style="font-size:12px;color:var(--txt2)">Los datos se guardan en este dispositivo. Usa Supabase para sincronizar entre múltiples dispositivos.</p><label class="f">URL Supabase</label><input type="text" id="syUrl" placeholder="https://xxxxx.supabase.co" value="https://oktinlfoxjdohjukhwqw.supabase.co"><label class="f">Clave anon</label><input type="text" id="syKey" placeholder="sb_publishable_xxxxx"><button class="oro" id="sySave">Guardar conexión</button><button style="opacity:.7" id="syUp">Subir datos</button></div>`;
 }
 
-/* ══════════ INFORMES PDF ══════════ */
-const CAB=(titulo,sub)=>`<h1>${esc(titulo)}</h1><div class="meta">Colegio Juan Pablo Segundo · Educación Física y Salud · 2026<br>
-  ${esc(sub)}<br>Profesor: Felipe Sanhueza Cárdenas · Emitido el ${new Date().toLocaleDateString('es-CL')}</div>`;
-const PIE=`<div class="pie">Niveles de desempeño: A = Adecuado · M = En desarrollo · B = Requiere apoyo · — = Sin registro.
-  Los resultados corresponden a la última medición registrada de cada estudiante. Documento generado por la aplicación Test de Condición Física.</div>`;
+function testAct(){return DB.tests.find(t=>t.id===TESTSEL)||DB.tests[0]}
+function fechaAct(){const f=document.getElementById('evalFecha');return f?f.value:hoy()}
+
+function upsert(aid,campo,valor){
+  const t=testAct(),f=fechaAct();
+  if(!t.evals)t.evals=[];
+  let e=t.evals.find(x=>x.aid===aid&&x.fecha===f);
+  if(!e){e={aid:aid,fecha:f,asist:'',val:''};t.evals.push(e)}
+  e[campo]=valor;
+  if(!e.asist&&!e.val){t.evals=t.evals.filter(x=>x!==e)}
+  save();
+}
+
+function pintarFilas(){
+  const t=testAct(),f=fechaAct(),c=curso();
+  c.alumnos.forEach(a=>{
+    const e=(t.evals||[]).find(x=>x.aid===a.id&&x.fecha===f);
+    const b=document.getElementById('asi'+a.id);
+    const i=document.getElementById('val'+a.id);
+    if(b){const v=e?(e.asist||''):'';b.dataset.sel=v;b.textContent=v||'—';
+      b.classList.remove('p','a','j');if(v)b.classList.add(v.toLowerCase())}
+    if(i)i.value=e?(e.val||''):'';
+  });
+}
 
 function imprimir(html){
-  const p=document.getElementById('print');
+  const p=document.getElementById('printarea');
   p.innerHTML=html;
-  setTimeout(()=>{window.print()},120);
+  window.print();
+  setTimeout(()=>{p.innerHTML=''},600);
 }
 
-function infCurso(c){
-  let h=CAB('Informe de condición física por curso',c.n+' · '+c.alumnos.length+' estudiantes');
-  h+=`<h2>Resultados por estudiante</h2><table><thead><tr><th>N°</th><th>Estudiante</th>${DB.tests.map(t=>`<th>${esc(t.n)}</th>`).join('')}</tr></thead><tbody>`;
+function informeCurso(){
+  const t=testAct(),f=fechaAct(),c=curso();
+  let h=`<h1>${t.n}</h1><div class="meta">${c.n} · Fecha: ${f} · Colegio Juan Pablo Segundo · Prof. Felipe Sanhueza Cárdenas</div>`;
+  h+=`<table><thead><tr><th style="width:8%">N°</th><th style="text-align:left">Estudiante</th><th style="width:14%">Asist.</th><th style="width:16%">Valor${t.u?' ('+t.u+')':''}</th></tr></thead><tbody>`;
+  let np=0,na=0,nj=0;
   c.alumnos.forEach((a,i)=>{
-    h+=`<tr><td>${i+1}</td><td class="nm">${esc(a.n)}</td>`;
-    DB.tests.forEach(t=>{
-      const u=ultima(t,a.id);const nv=u?nivel(t,u.val):'x';
-      h+=`<td>${u?esc(textoValor(t,u.val)):'—'}<br><b>${LAB[nv]}</b></td>`;
-    });
-    h+=`</tr>`;
+    const e=(t.evals||[]).find(x=>x.aid===a.id&&x.fecha===f);
+    const as=e?(e.asist||'—'):'—';
+    if(as==='P')np++;else if(as==='A')na++;else if(as==='J')nj++;
+    h+=`<tr><td>${i+1}</td><td class="nm">${a.n}</td><td>${as}</td><td>${e&&e.val?e.val:'—'}</td></tr>`;
   });
-  h+=`</tbody></table>`;
-  h+=`<h2>Síntesis por prueba</h2><table><thead><tr><th>Prueba</th><th>Promedio</th><th>Adecuado</th><th>En desarrollo</th><th>Requiere apoyo</th><th>Sin registro</th></tr></thead><tbody>`;
-  DB.tests.forEach(t=>{
-    const r=reparto(t,c.alumnos);const p=promedio(t,c.alumnos);
-    h+=`<tr><td class="nm">${esc(t.n)}</td><td>${p===null?'—':(t.tipo==='logro'?fmt(p,0)+'%':fmt(p,1)+(t.u?' '+t.u:''))}</td><td>${r.a}</td><td>${r.m}</td><td>${r.b}</td><td>${r.x}</td></tr>`;
-  });
-  h+=`</tbody></table>`;
-  const conAd=c.alumnos.filter(a=>totalAdapt(a.id));
-  if(conAd.length){
-    h+=`<h2>Estudiantes con adecuaciones</h2><ul>`;
-    conAd.forEach(a=>{h+=`<li>${esc(a.n)} — ${totalAdapt(a.id)} adecuación(es)</li>`});
-    h+=`</ul>`;
-  }
-  return h+PIE;
+  h+=`</tbody></table><div class="meta" style="margin-top:4mm">Presentes: ${np} · Ausentes: ${na} · Justificados: ${nj} · Total: ${c.alumnos.length}</div>`;
+  imprimir(h);
 }
 
-function infAlumno(c,a){
-  let h=CAB('Informe individual de condición física',a.n+' · '+c.n);
-  h+=`<h2>Resumen por prueba</h2><table><thead><tr><th>Prueba</th><th>Última medición</th><th>Mejor marca</th><th>Nivel</th><th>Mediciones</th></tr></thead><tbody>`;
+function informeAlumno(){
+  const c=curso(),a=c.alumnos.find(x=>x.id===DB.alumno);
+  let h=`<h1>${a.n}</h1><div class="meta">${c.n} · Informe de condición física · Colegio Juan Pablo Segundo · Prof. Felipe Sanhueza Cárdenas</div>`;
   DB.tests.forEach(t=>{
-    const u=ultima(t,a.id);const mj=mejor(t,a.id);const nv=u?nivel(t,u.val):'x';
-    h+=`<tr><td class="nm">${esc(t.n)}</td><td>${u?esc(textoValor(t,u.val)):'—'}</td><td>${mj!==null&&mj!==undefined?esc(textoValor(t,mj)):'—'}</td><td>${LAB[nv]} · ${LTX[nv]}</td><td>${evalsDe(t,a.id).length}</td></tr>`;
-  });
-  h+=`</tbody></table>`;
-  h+=`<h2>Historial de mediciones</h2>`;
-  DB.tests.forEach(t=>{
-    const evs=evalsDe(t,a.id);
-    if(!evs.length)return;
-    h+=`<table><thead><tr><th colspan="4" style="text-align:left">${esc(t.n)}</th></tr><tr><th>Fecha</th><th>Asistencia</th><th>Resultado</th><th>Nivel</th></tr></thead><tbody>`;
-    evs.slice().reverse().forEach(e=>{
-      h+=`<tr><td>${esc(e.fecha)}</td><td>${esc(e.asist||'—')}${e.just?' · '+esc(e.just):''}</td><td>${esc(textoValor(t,e.val))}</td><td>${LAB[nivel(t,e.val)]}</td></tr>`;
+    const ev=(t.evals||[]).filter(e=>e.aid===a.id).sort((x,y)=>new Date(y.fecha)-new Date(x.fecha));
+    h+=`<h3>${t.n}${t.u?' ('+t.u+')':''}</h3>`;
+    if(!ev.length){h+=`<div style="font-size:9.5pt;color:#666">Sin registro</div>`;return}
+    h+=`<table><thead><tr><th>Fecha</th><th>Asistencia</th><th>Valor</th><th>Diferencia</th></tr></thead><tbody>`;
+    ev.forEach((e,i)=>{
+      const df=i<ev.length-1?(num(e.val)-num(ev[i+1].val)):null;
+      h+=`<tr><td>${e.fecha}</td><td>${e.asist||'—'}</td><td>${e.val||'—'}</td><td>${df===null?'—':(df>0?'+':'')+fmt(df,1)}</td></tr>`;
     });
     h+=`</tbody></table>`;
   });
-  const o=DB.adaptaciones[a.id]||{};
-  if(Object.keys(o).length){
-    h+=`<h2>Adecuaciones curriculares aplicadas</h2>`;
-    Object.keys(o).forEach(tid=>{
-      const nom=tid==='general'?'General':(test(tid)?test(tid).n:tid);
-      h+=`<div style="font-size:10px;font-weight:700;margin-top:4px">${esc(nom)}</div><ul>`;
-      o[tid].forEach(txt=>{h+=`<li>${esc(txt)}</li>`});
-      h+=`</ul>`;
-    });
+  const ad=DB.adaptaciones[a.id];
+  if(ad&&Object.keys(ad).length){
+    h+=`<h3>Adaptaciones</h3><table><tbody>`;
+    Object.entries(ad).forEach(([tid,d])=>{const t=DB.tests.find(x=>x.id===tid);h+=`<tr><td class="nm" style="width:30%">${t?t.n:tid}</td><td class="nm">${d}</td></tr>`});
+    h+=`</tbody></table>`;
   }
-  return h+PIE;
+  imprimir(h);
 }
 
-function infPrueba(c,t){
-  let h=CAB('Informe por prueba: '+t.n,c.n+' · '+c.alumnos.length+' estudiantes');
-  const filas=c.alumnos.map(a=>({a,u:ultima(t,a.id),mj:mejor(t,a.id)}));
-  const con=filas.filter(f=>f.mj!==null&&f.mj!==undefined);
-  if(t.tipo==='logro')con.sort((p,q)=>(q.mj==='L'?1:0)-(p.mj==='L'?1:0));
-  else con.sort((p,q)=>t.mejor==='menor'?p.mj-q.mj:q.mj-p.mj);
-  const sin=filas.filter(f=>f.mj===null||f.mj===undefined);
-  h+=`<h2>Ordenado por mejor marca</h2><table><thead><tr><th>#</th><th>Estudiante</th><th>Última</th><th>Mejor</th><th>Nivel</th><th>Mediciones</th></tr></thead><tbody>`;
-  con.forEach((f,i)=>{
-    const nv=f.u?nivel(t,f.u.val):'x';
-    h+=`<tr><td>${i+1}</td><td class="nm">${esc(f.a.n)}</td><td>${f.u?esc(textoValor(t,f.u.val)):'—'}</td><td>${esc(textoValor(t,f.mj))}</td><td>${LAB[nv]}</td><td>${evalsDe(t,f.a.id).length}</td></tr>`;
-  });
-  sin.forEach(f=>{h+=`<tr><td>—</td><td class="nm">${esc(f.a.n)}</td><td colspan="4">Sin registro</td></tr>`});
-  h+=`</tbody></table>`;
-  const r=reparto(t,c.alumnos);const p=promedio(t,c.alumnos);
-  h+=`<h2>Síntesis</h2><table><tbody>
-    <tr><th>Promedio del curso</th><td>${p===null?'—':(t.tipo==='logro'?fmt(p,0)+'% de logro':fmt(p,1)+(t.u?' '+t.u:''))}</td></tr>
-    <tr><th>Adecuado</th><td>${r.a}</td></tr><tr><th>En desarrollo</th><td>${r.m}</td></tr>
-    <tr><th>Requiere apoyo</th><td>${r.b}</td></tr><tr><th>Sin registro</th><td>${r.x}</td></tr>
-  </tbody></table>`;
-  return h+PIE;
-}
-
-function infGeneral(){
-  let h=CAB('Informe general de condición física','Todos los cursos · 5º a 8º Básico');
-  h+=`<h2>Promedios por curso y prueba</h2><table><thead><tr><th>Prueba</th>${DB.cursos.map(c=>`<th>${esc(c.n)}</th>`).join('')}</tr></thead><tbody>`;
-  DB.tests.forEach(t=>{
-    h+=`<tr><td class="nm">${esc(t.n)}${t.u?' ('+t.u+')':''}</td>`;
-    DB.cursos.forEach(c=>{const p=promedio(t,c.alumnos);h+=`<td>${p===null?'—':(t.tipo==='logro'?fmt(p,0)+'%':fmt(p,1))}</td>`});
-    h+=`</tr>`;
-  });
-  h+=`</tbody></table>`;
-  h+=`<h2>Distribución de niveles por curso</h2><table><thead><tr><th>Curso</th><th>Estudiantes</th><th>Adecuado</th><th>En desarrollo</th><th>Requiere apoyo</th><th>Sin registro</th></tr></thead><tbody>`;
-  DB.cursos.forEach(c=>{
-    const tot={a:0,m:0,b:0,x:0};
-    DB.tests.forEach(t=>{const r=reparto(t,c.alumnos);tot.a+=r.a;tot.m+=r.m;tot.b+=r.b;tot.x+=r.x});
-    h+=`<tr><td class="nm">${esc(c.n)}</td><td>${c.alumnos.length}</td><td>${tot.a}</td><td>${tot.m}</td><td>${tot.b}</td><td>${tot.x}</td></tr>`;
-  });
-  h+=`</tbody></table>`;
-  return h+PIE;
-}
-
-function infAdapt(c){
-  let h=CAB('Informe de adecuaciones curriculares',c.n);
-  const con=c.alumnos.filter(a=>totalAdapt(a.id));
-  if(!con.length)return h+'<p>Este curso no tiene adecuaciones registradas.</p>'+PIE;
-  con.forEach(a=>{
-    h+=`<h2>${esc(a.n)}</h2>`;
-    const o=DB.adaptaciones[a.id]||{};
-    Object.keys(o).forEach(tid=>{
-      const nom=tid==='general'?'General':(test(tid)?test(tid).n:tid);
-      const t=test(tid);const u=t?ultima(t,a.id):null;
-      h+=`<div style="font-size:10px;font-weight:700;margin-top:4px">${esc(nom)}${u?' — último resultado: '+esc(textoValor(t,u.val)):''}</div><ul>`;
-      o[tid].forEach(txt=>{h+=`<li>${esc(txt)}</li>`});
-      h+=`</ul>`;
-    });
-  });
-  return h+PIE;
-}
-
-/* ══════════ EVENTOS ══════════ */
 function bind(){
   const $=id=>document.getElementById(id);
-  const qs=sel=>document.querySelectorAll(sel);
-
-  /* --- cursos --- */
-  if($('selCurso'))$('selCurso').addEventListener('change',e=>{DB.activo=e.target.value;DB.alumno=null;DB.adAlu=null;save();render()});
-  if($('addAlu'))$('addAlu').addEventListener('click',()=>{
-    const n=$('nuevoAlu').value.trim();if(!n)return;
-    curso().alumnos.push({id:uid(),n:n.toUpperCase()});save();render(true);toast('Estudiante agregado');
+  if($('selCurso'))$('selCurso').addEventListener('change',e=>{DB.activo=e.target.value;save();render()});
+  if($('addAlu')){$('addAlu').addEventListener('click',()=>{const n=$('nuevoAlu').value.trim();if(!n)return;curso().alumnos.push({id:uid(),n:n.toUpperCase()});save();render();toast('Estudiante agregado')})}
+  document.querySelectorAll('[id^="verA"]').forEach(b=>b.addEventListener('click',()=>{DB.alumno=b.id.slice(4);save();VIEW='alumno';render()}));
+  document.querySelectorAll('[id^="delA"]').forEach(b=>b.addEventListener('click',()=>{const aid=b.id.slice(4);const a=curso().alumnos.find(x=>x.id===aid);if(!a||!confirm('¿Eliminar a '+a.n+'?'))return;curso().alumnos=curso().alumnos.filter(x=>x.id!==aid);DB.tests.forEach(t=>{t.evals=t.evals.filter(e=>e.aid!==aid)});delete DB.adaptaciones[aid];save();render()}));
+  document.querySelectorAll('.tbtn').forEach(b=>b.addEventListener('click',ev=>{ev.preventDefault();TESTSEL=b.dataset.t;document.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');pintarFilas()}));
+  const CICLO=['','P','A','J'];
+  document.querySelectorAll('.asi1').forEach(b=>b.addEventListener('click',ev=>{ev.preventDefault();const i=CICLO.indexOf(b.dataset.sel||'');const v=CICLO[(i+1)%4];b.dataset.sel=v;b.textContent=v||'—';b.classList.remove('p','a','j');if(v)b.classList.add(v.toLowerCase());upsert(b.dataset.a,'asist',v)}));
+  document.querySelectorAll('.evbot input').forEach(inp=>{
+    const g=()=>upsert(inp.id.slice(3),'val',inp.value.trim());
+    inp.addEventListener('input',g);inp.addEventListener('blur',g);
   });
-  qs('[data-ver]').forEach(b=>b.addEventListener('click',()=>{DB.alumno=b.dataset.ver;save();VIEW='estudiante';render()}));
-  qs('[data-del]').forEach(b=>b.addEventListener('click',()=>{
-    const aid=b.dataset.del;const a=curso().alumnos.find(x=>x.id===aid);
-    if(!a||!confirm('¿Eliminar a '+a.n+'? Se borran también sus resultados y adecuaciones.'))return;
-    curso().alumnos=curso().alumnos.filter(x=>x.id!==aid);
-    DB.tests.forEach(t=>{t.evals=(t.evals||[]).filter(e=>e.aid!==aid)});
-    delete DB.adaptaciones[aid];save();render(true);
-  }));
-
-  /* --- evaluar --- */
-  qs('[data-t]').forEach(b=>b.addEventListener('click',()=>{DB.testSel=b.dataset.t;save();render(true)}));
-  if($('evalFecha'))$('evalFecha').addEventListener('change',e=>{EVF=e.target.value||hoy();render(true)});
-  qs('[data-asi]').forEach(b=>b.addEventListener('click',()=>{
-    const aid=b.dataset.asi;const t=test(DB.testSel);
-    const e=getEval(t,aid,EVF);
-    const ciclo=['','P','A','J'];
-    const act=e?(e.asist||''):'';
-    const sig=ciclo[(ciclo.indexOf(act)+1)%4];
-    setEval(t,aid,EVF,{asist:sig});
-    b.classList.remove('on-P','on-A','on-J');
-    if(sig)b.classList.add('on-'+sig);
-    b.textContent=sig||'·';
-    const nin=document.querySelector('[data-just="'+aid+'"]');
-    if(nin)nin.placeholder=(sig==='J'||sig==='A')?'Justificación':'—';
-  }));
-  qs('[data-val]').forEach(inp=>inp.addEventListener('input',()=>{
-    const aid=inp.dataset.val;const t=test(DB.testSel);
-    setEval(t,aid,EVF,{val:inp.value.trim()});
-    const sp=document.getElementById('lv'+aid);
-    if(sp){const nv=nivel(t,inp.value.trim());sp.className='lvl '+nv;sp.textContent=LAB[nv]}
-  }));
-  qs('[data-lg]').forEach(b=>b.addEventListener('click',()=>{
-    const aid=b.dataset.lg;const v=b.dataset.val;const t=test(DB.testSel);
-    const e=getEval(t,aid,EVF);
-    const nuevo=(e&&e.val===v)?'':v;
-    setEval(t,aid,EVF,{val:nuevo});
-    document.querySelectorAll('[data-lg="'+aid+'"]').forEach(x=>x.classList.remove('on-L','on-NL'));
-    if(nuevo)b.classList.add('on-'+nuevo);
-  }));
-  qs('[data-just]').forEach(inp=>inp.addEventListener('input',()=>{
-    setEval(test(DB.testSel),inp.dataset.just,EVF,{just:inp.value});
-  }));
-
-  /* --- estudiante --- */
-  if($('selAlu'))$('selAlu').addEventListener('change',e=>{DB.alumno=e.target.value;save();render(true)});
-  if($('antAlu'))$('antAlu').addEventListener('click',()=>{
-    const l=curso().alumnos;const i=l.findIndex(x=>x.id===DB.alumno);
-    DB.alumno=l[(i-1+l.length)%l.length].id;save();render();
-  });
-  if($('sigAlu'))$('sigAlu').addEventListener('click',()=>{
-    const l=curso().alumnos;const i=l.findIndex(x=>x.id===DB.alumno);
-    DB.alumno=l[(i+1)%l.length].id;save();render();
-  });
-  if($('pdfAlu'))$('pdfAlu').addEventListener('click',()=>{
-    const c=curso();const a=c.alumnos.find(x=>x.id===DB.alumno);
-    imprimir(infAlumno(c,a));
-  });
-
-  /* --- comparar --- */
-  qs('[data-ct]').forEach(b=>b.addEventListener('click',()=>{DB.cmpTest=b.dataset.ct;save();render(true)}));
-  if($('selCursoC'))$('selCursoC').addEventListener('change',e=>{DB.activo=e.target.value;DB.alumno=null;DB.adAlu=null;save();render(true)});
-  if($('pdfCurso'))$('pdfCurso').addEventListener('click',()=>imprimir(infCurso(curso())));
-  if($('pdfPrueba'))$('pdfPrueba').addEventListener('click',()=>imprimir(infPrueba(curso(),test(DB.cmpTest))));
-  if($('pdfGeneral'))$('pdfGeneral').addEventListener('click',()=>imprimir(infGeneral()));
-
-  /* --- adecuaciones --- */
-  if($('selAluAd'))$('selAluAd').addEventListener('change',e=>{DB.adAlu=e.target.value;save();render(true)});
-  qs('[data-at]').forEach(b=>b.addEventListener('click',()=>{DB.adTest=b.dataset.at;save();render(true)}));
-  qs('[data-bco]').forEach(b=>b.addEventListener('click',()=>{
-    toggleAdapt(DB.adAlu,b.dataset.tid,b.dataset.bco);render(true);
-  }));
-  if($('addAdapt'))$('addAdapt').addEventListener('click',()=>{
-    const d=$('descAdapt').value.trim();if(!d)return toast('Escribe la adecuación');
-    toggleAdapt(DB.adAlu,DB.adTest,d);render(true);toast('Adecuación agregada');
-  });
-  qs('[data-quita]').forEach(b=>b.addEventListener('click',()=>{
-    toggleAdapt(DB.adAlu,b.dataset.qt,b.dataset.quita);render(true);toast('Adecuación quitada');
-  }));
-  if($('pdfAdapt'))$('pdfAdapt').addEventListener('click',()=>imprimir(infAdapt(curso())));
-
-  /* --- datos --- */
-  if($('sySave'))$('sySave').addEventListener('click',async()=>{
-    const u=$('syUrl').value.trim(),k=$('syKey').value.trim();
-    if(!u||!k)return toast('Completa URL y clave');
-    CFG.url=u.replace(/\/+$/,'');CFG.key=k;saveCfg();
-    toast('Probando conexión…');
-    const ok=await syTest();
-    toast(ok?'Conexión OK ✓':'Revisa el detalle en pantalla');
-    render();
-  });
-  if($('syUp'))$('syUp').addEventListener('click',()=>{toast('Subiendo…');syPush(false)});
-  if($('syDown'))$('syDown').addEventListener('click',()=>syPull(false));
-  if($('expJson'))$('expJson').addEventListener('click',()=>{
-    const b=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(b);
-    a.download='test-fisico-'+hoy()+'.json';document.body.appendChild(a);a.click();
-    setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
-  });
-  if($('impJson'))$('impJson').addEventListener('change',e=>{
-    const f=e.target.files[0];if(!f)return;
-    const rd=new FileReader();
-    rd.onload=()=>{
-      try{
-        const d=JSON.parse(rd.result);
-        if(!d||!d.cursos||!d.tests)return toast('Archivo no válido');
-        if(!confirm('Se reemplazarán los datos actuales por los del respaldo. ¿Continuar?'))return;
-        DB=d;migrar();save();render();toast('Respaldo restaurado ✓');
-      }catch(err){toast('No se pudo leer el archivo')}
-    };
-    rd.readAsText(f);
-  });
-  if($('resetAll'))$('resetAll').addEventListener('click',()=>{
-    if(!confirm('Esto borra cursos, evaluaciones y adecuaciones de ESTE dispositivo.\nLa copia en la nube no se toca.\n\n¿Seguro?'))return;
-    localStorage.removeItem(KEY);DB=seed();migrar();
-    try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}
-    render();toast('Datos borrados');
-  });
+  if($('evalFecha'))$('evalFecha').addEventListener('change',pintarFilas);
+  if($('pdfCurso'))$('pdfCurso').addEventListener('click',informeCurso);
+  if($('pdfAlumno'))$('pdfAlumno').addEventListener('click',informeAlumno);
+  if(VIEW==='evaluaciones')pintarFilas();
+  if($('selAlu'))$('selAlu').addEventListener('change',e=>{DB.alumno=e.target.value;save();render()});
+  if($('addAdapt')){$('addAdapt').addEventListener('click',()=>{const aid=$('selAluAd').value;const tid=$('selTestAd').value;const desc=$('descAdapt').value.trim();if(!desc)return;if(!DB.adaptaciones[aid])DB.adaptaciones[aid]={};DB.adaptaciones[aid][tid]=desc;save();render();toast('Adaptación guardada')})}
+  document.querySelectorAll('[id^="delAd"]').forEach(b=>b.addEventListener('click',()=>{const [aid,tid]=b.id.slice(5).split('-');if(DB.adaptaciones[aid])delete DB.adaptaciones[aid][tid];save();render()}));
+  if($('sySave')){$('sySave').addEventListener('click',()=>{toast('Conexión configurada')})}
 }
 
 render();
-syBoot();
 </script>
 </body>
 </html>
