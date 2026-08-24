@@ -7,6 +7,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Test Físico">
 <meta name="theme-color" content="#0f2b5b">
+<link rel="manifest" href="/manifest-tcf.json">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAEQ0lEQVR4nO3dwY1TOxiGYXM1e+jj0gFbuoA2qII2bhls6YBCKIFFUIhmMrkk3zk+tv/nWSEhBef4nd+WmMy8efvvpwaP+ufoBTA3AREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQkaejFzCi71++vfZXH75+7LmS8b3xQzZPbkTzGjE1AbWH0rlUPKPSAYXpXCqbUd1L9Ib1bP5qE6k4gXbd7GqjqNwE2ntUVBtFtQLqs7ulGioUUM99rdNQlYD672iRhqoExE5KBHTUMKgwhNYP6NhdXL6h9QNiV4sHNMIAGGEN+1k8IPa2ckDjfOmPs5LNrRwQHQiIiICILBvQaNeO0dazlWUDog8BEREQEQERERARAREREBEBEVk2oNE+nzXaeraybED0ISAiAiKyckDjXDvGWcnmVg6IDhYPaIQv/RHWsJ/FA2Jv6wd07ABYe/y0CgG143Zx+XpakYDYT5WA+g+DCuOn1Qmo9d3RIvW0UgG1Xvtap55WLaC2/+6WqqfV/DG/J5t/UKtaOiflJtDZtvtds55WeQKd+V0ZCQH95rf1PEZAV/h9YX9PQETqXqLZhICICIiIgIgIiIiAiAiIiICICIjI09ELGNfPH/+d//zu/ecDVzIy/5VxxWU6l2T0kiPsDq+FVZmAnrtdiYaecYT9cVccjrMTE+i3e0eLUXQioNYerUFDTUAt60BDpe9AG25/2StR3Qm07fAoO4qKBrTHftdsqGJA++10wYZq3YG6bXCdK1GhCdRzPNQZRVUC6r+jRRoqEdBRe1mhocXvQPkWvnv/eZMXCV9hWCtPoK02Pt/+hUfRshMo3LOr0ezxmrNbMKBdTxzH2TOrHWF7b7Dj7JmlAuozHjR0aZ0jrP8FxZWorRHQgfcSV6Lpj7Bjt9BxNndAIwyA4g1NfISNdgUZbT19TBnQCIPnqmEXtp/5jrCRN6ngcTbZBJrlmJhlnbmZJtBEuxL+WxPNoTkm0MjH1g2TLvsuE0ygebehwpVo8Qk0yFfw7Ou/YYIJ1B59juM8/dnXf8McAT1gtKc/2nq2Mk1Ad23AmLu1wFt4aY470Nn/XiameO5rvIuTaSbQyd7fLtjHGu/iZLKA2uvPd67nvsa7aDMGdNV0z73NueaXJrsDnZ2vEQtsw9TvZdYJtNVH/kYw9XuZdQIxiFknEIMQEBEBEREQEQERERARAREREBEBEREQEQERERARARF5OnoBW/r+5dvRS/hbH75+PHoJ2zCBiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiPNhMxgYgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiMgvZpMzjhUu4UYAAAAASUVORK5CYII=">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -114,7 +116,7 @@ nav a.on{color:var(--azul)}
 <header>
   <div class="kicker">Colegio Juan Pablo Segundo · Los Lagos</div>
   <h1>Test de Condición Física</h1>
-  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas · v<span id="vtag">7</span></div>
+  <div class="sub">5º a 8º Básico · 2026 · Prof. Felipe Sanhueza Cárdenas · v<span id="vtag">9</span></div>
 </header>
 
 <main id="app"></main>
@@ -131,7 +133,7 @@ nav a.on{color:var(--azul)}
 <div class="toast" id="toast"></div>
 
 <script>
-const VER='7';
+const VER='9';
 
 /* Autoactualizacion: si en el servidor hay una version mas nueva, recarga solo */
 setTimeout(()=>{
@@ -147,7 +149,10 @@ setTimeout(()=>{
 },1200);
 
 /* Limpia Service Workers y caches antiguos que servian la version vieja */
-if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{})}
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations()
+  .then(rs=>rs.forEach(r=>{const u=(r.active&&r.active.scriptURL)||'';if(!u.includes('sw-tcf.js'))r.unregister()}))
+  .catch(()=>{});
+  navigator.serviceWorker.register('/sw-tcf.js').catch(()=>{});}
 if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k))).catch(()=>{})}
 
 const KEY='cjp2_tcf_v2';
